@@ -1,55 +1,73 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+
 // import css
 import "./Login.css"
 
-
-function Login() {
+function Signup() {
 
     const navigate = useNavigate()
-    const switchToSignup = () => {
-        navigate("/signup")
+    const switchToLogin = () => {
+        navigate("/login")
     }
 
     return (
         <div className='login-wrapper'>
-
             <div >
                 <form className="form">
                     <div className="login-heading">
-                        <h1>Login</h1>
+                        <h1>Sign Up</h1>
                     </div>
+
+                    <div className="flex-column">
+                        <label>Full Name </label>
+                    </div>
+
+                    <div className="inputForm">
+                        <input
+                            type="text"
+                            className="input"
+                            name='name'
+                            placeholder="Enter your full name"
+                        />
+                    </div>
+
                     <div className="flex-column">
                         <label>Email </label>
                     </div>
 
                     <div className="inputForm">
-                        <input type="text" className="input" placeholder="Enter your Email" />
+                        <input
+                            type="text"
+                            className="input"
+                            name='email'
+                            placeholder="Enter your Email"
+                        />
                     </div>
 
                     <div className="flex-column">
                         <label>Password </label>
                     </div>
-
                     <div className="inputForm">
-                        <input type="password" className="input" placeholder="Enter your Password" />
+                        <input
+                            type="password"
+                            className="input"
+                            name='password'
+                            placeholder="Enter your Password"
+                        />
                     </div>
 
-                    <div className="flex-row">
-                        <span className="span">Forgot password?</span>
-                    </div>
-
-                    <button className="button-submit">Sign In</button>
+                    <button className="button-submit">Sign Up</button>
 
                     <p className="p">
-                        Don't have an account?
-                        <span className="span" onClick={switchToSignup}>
-                            Signup
+                        Already have an account?
+                        <span className="span" onClick={switchToLogin}>
+                            Login
                         </span>
                     </p>
 
-                    <p className="p line">Or With</p>
+                    <p className="p line">or Sign Up using</p>
 
                     <div className="flex-row">
                         <button className="btn google">
@@ -60,9 +78,8 @@ function Login() {
                     </div>
                 </form>
             </div>
-
         </div>
     )
 }
 
-export default Login
+export default Signup
