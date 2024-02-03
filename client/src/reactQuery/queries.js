@@ -1,5 +1,6 @@
 import {
 createUserAccount,
+  passwordEmail,
   resetPassword,
 signInAccount
 } from "../appwrite/api";
@@ -29,7 +30,7 @@ export const userForgetPasswordMutation = () => {
 
 export const useEmailVerificationMutation = () => {
   return useMutation({
-    mutationFn: (email) => emailVerification(email),
+    mutationFn: (email) => passwordEmail(email),
   });
 };
 

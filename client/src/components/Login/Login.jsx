@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 // import css
 import "./Login.css";
-import { userSignInMutation } from "../../reactQuery/queries";
+import { useEmailVerificationMutation, userSignInMutation } from "../../reactQuery/queries";
 import {  passwordEmail,googleAuth, signInAccount } from "../../appwrite/api";
 
 function Login() {
   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
+  const { mutateAsync: emailVerification} = useEmailVerificationMutation();
   const [formData, setformData] = useState({});
 
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function Login() {
 
   const handleForgetPaasword = async(e) => {
     e.preventDefault();
-    const forget = await passwordEmail(formData.email);
+    const forget = await emailVerification(formData.email);
     console.log(forget);
   }
 
