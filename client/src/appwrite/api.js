@@ -98,27 +98,21 @@ export const passwordEmail = async (email) => {
   }
 }
 
-export const resetPassword = async (userId,secret,password) => {
+export const resetPassword = async (userId, secret, password) => {
   try {
-    console.log("pass" ,password,"fjdvkfjd");
-    const promise = account.updateRecovery(
+    console.log(userId, secret, password);
+    const response = await account.updateRecovery(
       userId,
       secret,
       password,
       password,
     );
-
-    promise.then(
-      function (response) {
-        console.log(response); // Success
-      },
-      function (error) {
-        console.log(error); // Failure
-      },
-    );
+    console.log(response); 
+    return response;
   } catch (error) {
     console.log(error);
     return error;
   }
-}
+};
+
 

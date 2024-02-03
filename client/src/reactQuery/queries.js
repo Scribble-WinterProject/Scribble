@@ -1,9 +1,11 @@
 import {
 createUserAccount,
+  resetPassword,
 signInAccount
 } from "../appwrite/api";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 
 export const useCreateAccountMutation = () => {
   return useMutation({
@@ -15,6 +17,13 @@ export const userSignInMutation = () => {
   return useMutation({
     mutationFn: (email,password) =>
       signInAccount(email, password),
+  });
+};
+
+export const userForgetPasswordMutation = () => {
+  return useMutation({
+    mutationFn: ({userId, secret, password}) =>
+      resetPassword(userId, secret, password),
   });
 };
 
