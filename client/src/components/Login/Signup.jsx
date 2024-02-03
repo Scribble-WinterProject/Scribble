@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {createUserAccount, googleAuth} from '../../appwrite/api.js'
+import {createUserAccount} from '../../appwrite/api.js'
 import "./Login.css";
 import { useCreateAccountMutation } from "../../reactQuery/queries.js";
 import { account } from "../../appwrite/config.js";
@@ -34,6 +34,10 @@ function Signup() {
     console.log(newUser);
   };
 
+  const handleGoogleAuth = async(e) => {
+    e.preventDefault()
+    account.createOAuth2Session('google', 'http://localhost:5173/','http://localhost:5173/');
+  }
 
 
   return (
@@ -103,7 +107,7 @@ function Signup() {
           <p className="p line">or Sign Up using</p>
 
           <div className="flex-row">
-            <button className="btn google">
+            <button className="btn google" onClick={handleGoogleAuth}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="2443"
