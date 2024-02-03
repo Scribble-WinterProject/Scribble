@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // import css
 import "./Login.css";
 import { userSignInMutation } from "../../reactQuery/queries";
-import {  googleAuth, signInAccount } from "../../appwrite/api";
+import {  passwordEmail,googleAuth, signInAccount } from "../../appwrite/api";
 
 function Login() {
 //   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
@@ -41,11 +41,11 @@ function Login() {
     console.log(user);
   };
 
-//   const handleForgetPaasword = async(e) => {
-//     e.preventDefault();
-//     const forget = await passwordEmail(formData.email);
-//     console.log(forget);
-//   }
+  const handleForgetPaasword = async(e) => {
+    e.preventDefault();
+    const forget = await passwordEmail(formData.email);
+    console.log(forget);
+  }
 
   return (
     <div className="login-wrapper">
@@ -81,14 +81,12 @@ function Login() {
           </div>
 
           <div className="flex-row">
-            <span  className="span">Forgot password?</span>
+            <span onClick={handleForgetPaasword} className="span">
+              Forgot password?
+            </span>
           </div>
 
-          <button
-            className="button-submit"
-            onClick={handleLogin}
-            type="submit"
-          >
+          <button className="button-submit" onClick={handleLogin} type="submit">
             Sign In
           </button>
 

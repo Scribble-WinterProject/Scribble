@@ -78,33 +78,47 @@ export const googleAuth = async () => {
   }
 }
 
-// export const getSession = async() => {
-//   try {
-//     const session = await account.getSession("current");
-//     return session;
-//   } catch (error) {
-//     console.log(error);
-//     return error;
-//   }
-// }
+export const getSession = async() => {
+  try {
+    const session = await account.getSession("current");
+    return session;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
 
-// export const passwordEmail = async (email) => {
-//   try {
-//     const response = await account.createRecovery(email,"http://localhost:5173/forgetPassword");
-//     return response;
-//   } catch (error) {
-//     console.log(error);
-//     return error;
-//   }
-// }
+export const passwordEmail = async (email) => {
+  try {
+    const response = await account.createRecovery(email,"http://localhost:5173/forgetPassword");
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
 
-// export const resetPassword = async (userId, password, secret) => {
-//   try {
-//     const response = await account.updateRecovery(userId, secret, password, password);
-//     return response;
-//   } catch (error) {
-//     console.log(error);
-//     return error;
-//   }
-// }
+export const resetPassword = async (userId,secret,password) => {
+  try {
+    console.log("pass" ,password,"fjdvkfjd");
+    const promise = account.updateRecovery(
+      userId,
+      secret,
+      password,
+      password,
+    );
+
+    promise.then(
+      function (response) {
+        console.log(response); // Success
+      },
+      function (error) {
+        console.log(error); // Failure
+      },
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
 
