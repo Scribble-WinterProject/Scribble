@@ -8,6 +8,7 @@ import Signup from './components/Login/Signup.jsx'
 
 // import css
 import "./App.css"
+import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
 
 
 function App() {
@@ -15,14 +16,13 @@ function App() {
     <div>
       <Router>
         <Routes>
-
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
         </Routes>
       </Router>
     </div>
-  )
+  );
 }
 
 export default App

@@ -47,5 +47,64 @@ export const saveUser = async (user) => {
   }
 };
 
+export const signInAccount = async (email, password) => {
+  try {
+    const userLogin = await account.createEmailSession(email, password);
+    return userLogin;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
 
+export const googleAuth = async () => {
+  try {
+    await account.createOAuth2Session(
+      "google",
+      "http://localhost:5173",
+      "http://localhost:5173",
+    );
+    const session = await getSession();
+    const newUser = await saveUser({
+      accountId: session.$id,
+      email: session.email,
+      imageurl: session.avatar,
+      fullname: session.name,
+    });
+    return newUser
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+// export const getSession = async() => {
+//   try {
+//     const session = await account.getSession("current");
+//     return session;
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
+
+// export const passwordEmail = async (email) => {
+//   try {
+//     const response = await account.createRecovery(email,"http://localhost:5173/forgetPassword");
+//     return response;
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
+
+// export const resetPassword = async (userId, password, secret) => {
+//   try {
+//     const response = await account.updateRecovery(userId, secret, password, password);
+//     return response;
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
 

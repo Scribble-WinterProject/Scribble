@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {createUserAccount} from '../../appwrite/api.js'
+import {createUserAccount, googleAuth} from '../../appwrite/api.js'
 import "./Login.css";
 import { useCreateAccountMutation } from "../../reactQuery/queries.js";
-import { account } from "../../appwrite/config.js";
-
 
 function Signup() {
   const navigate = useNavigate();
@@ -24,19 +22,21 @@ function Signup() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    const newUser = await createUserAccount(formData);
+    const newUser = await createUser(formData);
 
     if (!newUser) {
       console.log("something went wrong");
     }
 
     console.log(newUser);
+    navigate("/");
   };
 
   const handleGoogleAuth = async(e) => {
     e.preventDefault()
-    account.createOAuth2Session('google', 'http://localhost:5173/','http://localhost:5173/');
+      
+      const user = await googleAuth();
+      console.log(user); 
   }
 
 
