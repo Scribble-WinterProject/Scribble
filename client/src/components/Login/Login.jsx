@@ -7,7 +7,7 @@ import { userSignInMutation } from "../../reactQuery/queries";
 import {  passwordEmail,googleAuth, signInAccount } from "../../appwrite/api";
 
 function Login() {
-//   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
+  const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
   const [formData, setformData] = useState({});
 
   const navigate = useNavigate();
@@ -24,9 +24,8 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const user = await signInAccount(
-      formData.email,
-      formData.password,
+    const user = await loginUser(
+      formData
     );
     if (!user) {
       console.log("something went wrong");

@@ -15,8 +15,8 @@ export const useCreateAccountMutation = () => {
 
 export const userSignInMutation = () => {
   return useMutation({
-    mutationFn: (email,password) =>
-      signInAccount(email, password),
+    mutationFn: (user) =>
+      signInAccount(user.email, user.password),
   });
 };
 
@@ -24,6 +24,12 @@ export const userForgetPasswordMutation = () => {
   return useMutation({
     mutationFn: ({userId, secret, password}) =>
       resetPassword(userId, secret, password),
+  });
+};
+
+export const useEmailVerificationMutation = () => {
+  return useMutation({
+    mutationFn: (email) => emailVerification(email),
   });
 };
 
