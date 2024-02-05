@@ -31,7 +31,6 @@ function ProfilePage() {
                 <h3 className="profile-name">James Carson</h3>
                 <div className="profile-about">
                     <p className="email">aditya@gmail.com</p>
-                    <p className="phoneNumber">+91 66666666666</p>
                 </div>
                 <button className="profile-btn">Edit Profile</button>
                 <button className="profile-btn">Forgot Password</button>
