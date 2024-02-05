@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useEmailVerificationMutation, userSignInMutation } from "../../reactQuery/queries";
+import { passwordEmail, googleAuth, signInAccount } from "../../appwrite/api";
+
 // import css
 import "./Login.css";
-import { useEmailVerificationMutation, userSignInMutation } from "../../reactQuery/queries";
-import {  passwordEmail,googleAuth, signInAccount } from "../../appwrite/api";
+
 
 function Login() {
   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
