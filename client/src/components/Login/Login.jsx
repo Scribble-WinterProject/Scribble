@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 // import css
 import "./Login.css";
 import { useEmailVerificationMutation, userSignInMutation } from "../../reactQuery/queries";
-import {  passwordEmail,googleAuth, signInAccount } from "../../appwrite/api";
+import {  passwordEmail,googleAuth, signInAccount, getCurrentUser } from "../../appwrite/api";
 
 function Login() {
   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
   const { mutateAsync: emailVerification} = useEmailVerificationMutation();
   const [formData, setformData] = useState({});
+  const searchParams = useLocation()
 
   const navigate = useNavigate();
   const switchToSignup = () => {
@@ -35,10 +37,23 @@ function Login() {
     navigate("/");
   };
 
+  // useEffect(() => {
+  //   const checkSession = async () => {
+  //     const user = await getCurrentUser();
+  //     console.log("user", user);
+  //     if (user[0] === 0) {
+  //       navigate("/signup");
+  //     } else {
+  //       // navigate("/");
+  //     }
+  //   };
+  //   checkSession();
+  // }, []);
+
+
   const handleGoogleAuth = async (e) => {
     e.preventDefault();
-    const user = await googleAuth()
-    console.log(user);
+    await googleAuth(searchParams.pathname);
   };
 
   const handleForgetPaasword = async(e) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   createUserAccount,
   getCurrentUser,
@@ -9,13 +9,15 @@ import {
 } from "../../appwrite/api.js";
 import "./Login.css";
 import { useCreateAccountMutation } from "../../reactQuery/queries.js";
-import { account, avatars } from "../../appwrite/config.js";
 
 function Signup() {
   const navigate = useNavigate();
   const [formData, setformData] = useState({});
+  const searchParams = useLocation();
   const { mutateAsync: createUser, isPending: creatingUser } =
     useCreateAccountMutation();
+
+
   const switchToLogin = () => {
     navigate("/login");
   };
@@ -42,7 +44,7 @@ function Signup() {
   const handleGoogleAuth = async (e) => {
     e.preventDefault();
 
-    await googleAuth();
+    await googleAuth(searchParams.pathname);
   };
 
   useEffect(() => {
@@ -63,7 +65,7 @@ function Signup() {
         } else {
           console.log("something went wrong");
         }
-      } else {
+      } else if(user[0]!==undefined) {
         navigate("/");
       }
     };
