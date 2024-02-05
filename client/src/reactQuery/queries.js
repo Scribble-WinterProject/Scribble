@@ -1,5 +1,6 @@
 import {
 createUserAccount,
+  logOut,
   passwordEmail,
   resetPassword,
 signInAccount
@@ -34,8 +35,8 @@ export const useEmailVerificationMutation = () => {
   });
 };
 
-// export const userLogOutMutation = () => {
-//   return useMutation({
-//     mutationFn: () => logOutUser(),
-//   });
-// };
+export const userLogOutMutation = () => {
+  return useMutation({
+    mutationFn: () => logOut(),
+  });
+};
