@@ -11,6 +11,8 @@ import Notes from "./Components/Notes/Notes"
 
 // import css
 import "./App.css"
+import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
+import { Home } from './reactQuery/pages/Home/Home.jsx';
 
 
 function App() {
@@ -19,15 +21,22 @@ function App() {
       <Router>
         <Routes>
 
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/" element={<Home />} />
+
+
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/home' element={<Home />} />
           <Route path='/notes' element={<Notes />} />
 
+
         </Routes>
       </Router>
     </div>
-  )
+  );
 }
 
 export default App
