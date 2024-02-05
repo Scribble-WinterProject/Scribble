@@ -5,7 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 // import css
 import "./Login.css";
 import { useEmailVerificationMutation, userSignInMutation } from "../../reactQuery/queries";
-import {  passwordEmail,googleAuth, signInAccount, getCurrentUser } from "../../appwrite/api";
+import {  passwordEmail,googleAuth, signInAccount, getCurrentUser, getSession } from "../../appwrite/api";
+import { account } from "../../appwrite/config";
 
 function Login() {
   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
@@ -37,18 +38,16 @@ function Login() {
     navigate("/");
   };
 
-  // useEffect(() => {
-  //   const checkSession = async () => {
-  //     const user = await getCurrentUser();
-  //     console.log("user", user);
-  //     if (user[0] === 0) {
-  //       navigate("/signup");
-  //     } else {
-  //       // navigate("/");
-  //     }
-  //   };
-  //   checkSession();
-  // }, []);
+  useEffect(() => {
+    const checkSession = async () => {
+      const user = await account.get();
+      console.log("user", user);
+      if (user) {
+        navigate("/");
+      } 
+    };
+    checkSession();
+  }, []);
 
 
   const handleGoogleAuth = async (e) => {
