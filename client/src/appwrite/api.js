@@ -146,5 +146,15 @@ export const getCurrentUser = async () => {
   }
 };
 
+export const logOut = async()=> {
+  try {
+    const response = await account.deleteSession("current");
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 
 

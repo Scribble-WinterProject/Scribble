@@ -12,7 +12,6 @@ import Notes from "./Components/Notes/Notes"
 // import css
 import "./App.css"
 import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
-import { Home } from './reactQuery/pages/Home/Home.jsx';
 
 
 function App() {
