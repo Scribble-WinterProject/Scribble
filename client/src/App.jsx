@@ -20,19 +20,17 @@ function App() {
     <div>
       <Router>
         <Routes>
- 
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/" element={<Home />} />
-=======
 
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/home' element={<Home />} />
           <Route path='/notes' element={<Notes />} />
 
- 
         </Routes>
       </Router>
     </div>
