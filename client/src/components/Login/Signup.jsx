@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {createUserAccount, googleAuth} from '../../appwrite/api.js'
+import {
+  createUserAccount,
+  getCurrentUser,
+  getSession,
+  googleAuth,
+  saveUser,
+} from "../../appwrite/api.js";
 import "./Login.css";
 import { useCreateAccountMutation } from "../../reactQuery/queries.js";
+import { account, avatars } from "../../appwrite/config.js";
 
 function Signup() {
   const navigate = useNavigate();
   const [formData, setformData] = useState({});
-    const { mutateAsync: createUser, isPending: creatingUser } =
-      useCreateAccountMutation();
+  const { mutateAsync: createUser, isPending: creatingUser } =
+    useCreateAccountMutation();
   const switchToLogin = () => {
     navigate("/login");
   };
@@ -32,13 +39,36 @@ function Signup() {
     navigate("/");
   };
 
-  const handleGoogleAuth = async(e) => {
-    e.preventDefault()
-      
-      const user = await googleAuth();
-      console.log(user); 
-  }
+  const handleGoogleAuth = async (e) => {
+    e.preventDefault();
 
+    await googleAuth();
+  };
+
+  useEffect(() => {
+    const checkSession = async () => {
+     const user = await getCurrentUser();
+     console.log("user", user[0]);
+      if (user[0]===0) {
+        const avatar = user[2];
+        const newUser = await saveUser({
+          accountId: user[1].$id,
+          email: user[1].email,
+          imageurl: avatar,
+          fullname: user[1].name,
+        });
+        console.log("new user", newUser);
+        if(newUser){
+          navigate("/");
+        } else {
+          console.log("something went wrong");
+        }
+      } else {
+        navigate("/");
+      }
+    };
+    checkSession();
+  }, []);
 
   return (
     <div className="login-wrapper">

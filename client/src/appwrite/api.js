@@ -1,4 +1,4 @@
-import { ID, Permission, Role } from "appwrite";
+import { ID, Permission, Role,Query } from "appwrite";
 import { account, appwriteConfig, avatars, databases } from "./config";
 
 export const createUserAccount = async (user) => {
@@ -61,17 +61,9 @@ export const googleAuth = async () => {
   try {
     await account.createOAuth2Session(
       "google",
-      "http://localhost:5173",
-      "http://localhost:5173",
+      "http://localhost:5173/signup",
+      "http://localhost:5173/signup",
     );
-    const session = await getSession();
-    const newUser = await saveUser({
-      accountId: session.$id,
-      email: session.email,
-      imageurl: session.avatar,
-      fullname: session.name,
-    });
-    return newUser
   } catch (error) {
     console.log(error);
     return error;
@@ -80,8 +72,17 @@ export const googleAuth = async () => {
 
 export const getSession = async() => {
   try {
-    const session = await account.getSession("current");
-    return session;
+   const session = account.getSession("current");
+
+   session.then(
+     function (response) {
+       console.log(response); // Success
+     },
+     function (error) {
+       console.log(error); // Failure
+     },
+   );
+   return
   } catch (error) {
     console.log(error);
     return error;
@@ -114,5 +115,34 @@ export const resetPassword = async (userId, secret, password) => {
     return error;
   }
 };
+
+export const getCurrentUser = async () => {
+  try {
+    const currentAccount = await account.get();
+
+    if (!currentAccount) {
+      throw new Error("unauthorized");
+    }
+
+    const currentUser = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userId,
+      [Query.equal("accountId", currentAccount.$id)],
+    );
+
+    console.log("current user", currentUser.documents.length);
+
+    const avatar = avatars.getInitials(currentAccount.name);
+    return [
+      currentUser.documents.length,
+      currentAccount,
+      avatar
+    ];
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 
 

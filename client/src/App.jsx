@@ -9,6 +9,7 @@ import Signup from './components/Login/Signup.jsx'
 // import css
 import "./App.css"
 import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
+import { Home } from './reactQuery/pages/Home/Home.jsx';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Router>
     </div>
