@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { resetPassword } from "../../appwrite/api";
 import { useNavigate, useLocation } from "react-router-dom";
-import { userForgetPasswordMutation } from "../../reactQuery/queries";
+import { userForgetPasswordMutation, userLogOutMutation } from "../../reactQuery/queries";
 
 export const ForgetPassword = () => {
   const searchParams = useLocation();
@@ -11,13 +11,18 @@ export const ForgetPassword = () => {
   const secret = urlParams.get("secret");
 
   const { mutateAsync: forgetPassword } = userForgetPasswordMutation();
+  const { mutateAsync: logOutFunction } = userLogOutMutation();
 
   const [password, setPassword] = useState("");
   const handlePasswordReset = async () => {
       try {
           const res = await forgetPassword({userId, secret, password});
           console.log(res);
-          navigate("/login");
+          
+          const logout = await logOutFunction();
+          if (logout) {
+            navigate("/login");
+          }
       } catch (error) {
         console.log(error);
         return

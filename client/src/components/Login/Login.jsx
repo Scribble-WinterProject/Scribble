@@ -7,6 +7,7 @@ import { passwordEmail, googleAuth, signInAccount } from "../../appwrite/api";
 
 // import css
 import "./Login.css";
+import { account } from "../../appwrite/config";
 
 function Login() {
   const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
