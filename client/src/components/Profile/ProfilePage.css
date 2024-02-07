@@ -5,6 +5,7 @@
     margin: 30px auto 0px;
     padding: 15px;
     width: 350px;
+    /* height: 435px; */
     background: #fff;
     border-radius: 5px;
     text-align: center;
@@ -43,29 +44,54 @@
     line-height: 1.6;
 }
 
-.profile-btn {
+.profile-btn-light,
+.profile-btn-dark {
     width: 100%;
     margin: 5px 0px;
-    /* background: #7ce3ff; */
-    background: transparent;
+
     padding: 10px 25px;
     border-radius: 10px;
     border: 1px solid #000;
     font-weight: bold;
     font-family: Montserrat;
     cursor: pointer;
-    /* color: #fff; */
-    color: #000;
+
     transition: 0.2s;
 }
 
-/* .profile-btn:last-of-type {
+.profile-btn-light {
     background: transparent;
-    border-color: #7ce3ff;
-    color: #7ce3ff;
-} */
+    color: #000;
+}
 
-.profile-btn:hover {
+.profile-btn-dark {
     background: #000;
     color: #fff;
+}
+
+.profile-btn-light:hover {
+    background: #000;
+    color: #fff;
+}
+
+/*
+.profile-btn-dark:hover {
+    background: #fff;
+    color: #000;
+} */
+
+
+.forgot-password {
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flex-column-forgot-password {
+    margin-bottom: 5px;
+    margin-left: 5px;
+    text-align: left;
+    color: #151717;
+    font-weight: 600;
 }
