@@ -23,7 +23,7 @@
     max-width: 190px;
 }
 
-.input {
+.search-input {
     width: 100%;
     height: 40px;
     line-height: 28px;
@@ -37,12 +37,12 @@
     transition: 0.3s ease;
 }
 
-.input::placeholder {
+.search-input::placeholder {
     color: #9e9ea7;
 }
 
-.input:focus,
-.input:hover {
+.search-input:focus,
+.search-input:hover {
     outline: none;
     border-color: rgba(247, 127, 0, 0.4);
     background-color: #fff;
