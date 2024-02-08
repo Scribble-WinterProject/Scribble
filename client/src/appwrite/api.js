@@ -57,13 +57,15 @@ export const signInAccount = async (email, password) => {
   }
 };
 
-export const googleAuth = async () => {
+export const googleAuth = async (path) => {
   try {
-    await account.createOAuth2Session(
+    const res = await account.createOAuth2Session(
       "google",
-      "http://localhost:5173/signup",
-      "http://localhost:5173/signup",
+      `http://localhost:5173${path}`,
+      `http://localhost:5173${path}`,
     );
+    console.log(res.href);
+
   } catch (error) {
     console.log(error);
     return error;
@@ -143,6 +145,16 @@ export const getCurrentUser = async () => {
     return error;
   }
 };
+
+export const logOut = async()=> {
+  try {
+    const response = await account.deleteSession("current");
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
 
 
 

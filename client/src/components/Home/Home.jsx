@@ -9,8 +9,10 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import "./Home.css"
 import FolderCard from './FolderCard';
 import NotesCard from './NotesCard';
+import { getSession } from '../../appwrite/api';
 
 function Home() {
+    const session = getSession();
     return (
         <div>
             <div className="navbar-home">
