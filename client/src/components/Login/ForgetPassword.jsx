@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { resetPassword } from "../../appwrite/api";
 import { useNavigate, useLocation } from "react-router-dom";
 import { userForgetPasswordMutation, userLogOutMutation } from "../../reactQuery/queries";
 
