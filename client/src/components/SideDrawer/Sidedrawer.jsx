@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import "./SideDrawer.css"
 import { logOut } from '../../appwrite/api';
 import { userLogOutMutation } from '../../reactQuery/queries';
+import { useNavigate } from 'react-router';
+
 
 export default function TemporaryDrawer() {
     const [state, setState] = React.useState({
@@ -24,12 +26,13 @@ export default function TemporaryDrawer() {
     };
 
     const {mutateAsync:logOutFunction} = userLogOutMutation()
+    const navigate = useNavigate()
 
     const handleLogOut = async(e)=> {
         e.preventDefault();
         const res = await logOutFunction();
         if(res) {
-            window.location.href = "/login";
+            navigate('/login');
         }
     }
 

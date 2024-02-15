@@ -16,6 +16,7 @@ import "./App.css"
 
 import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
 
+// import { Home } from './reactQuery/pages/Home/Home.jsx';
 
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
           <Route path='/notes' element={<Notes />} />
 
 
+
+          {/* <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+           */}
 
 
         </Routes>
