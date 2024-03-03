@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "",
   dangerouslyAllowBrowser: true,
 });
 
