@@ -6,7 +6,7 @@ export const appwriteConfig = {
   databaseId: "65bc15a864b1f94713bd",
   //   storageId: import.meta.env.VITE_STORAGE_KEY,
   userId: "65bc15b14e7036dabedf",
-  // noteId: "65b93efccc7d4c315af6",
+  noteId: "65bc15ba795234a89290",
 };
 
 export const client = new Client();

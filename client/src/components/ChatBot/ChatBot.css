@@ -30,6 +30,7 @@
 
 .incoming {
     background-color: #e1e1e1;
+  
 }
 
 .outgoing {
@@ -94,4 +95,10 @@
 
 .chat-card .message:nth-child(odd) {
     animation-delay: 0.3s;
+}
+
+
+.scrollable {
+    max-height: 300px;
+    overflow-y: auto;
 }

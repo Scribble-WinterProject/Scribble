@@ -1,7 +1,8 @@
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: "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",dangerouslyAllowBrowser: true
+  apiKey: "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",
+  dangerouslyAllowBrowser: true,
 });
 
 export async function analyze(input) {

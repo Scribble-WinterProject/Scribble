@@ -156,5 +156,20 @@ export const logOut = async()=> {
   }
 }
 
+export const saveNote = async(note)=> {
+  try {
+    const noteSaved = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      ID.unique(),
+      note
+    );
+    console.log("saved note",noteSaved);
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
+
 
 

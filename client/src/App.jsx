@@ -15,6 +15,7 @@ import "./App.css"
 
 
 import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
+import Edit from "../Editor.jsx";
 
 // import { Home } from './reactQuery/pages/Home/Home.jsx';
 
@@ -24,22 +25,14 @@ function App() {
     <div>
       <Router>
         <Routes>
-
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/home' element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/user/profile" element={<ProfilePage />} />
-          <Route path='/notes' element={<Notes />} />
-
-
-
-          {/* <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-           */}
-
-
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/editor" element={<Edit />} />
         </Routes>
       </Router>
     </div>
