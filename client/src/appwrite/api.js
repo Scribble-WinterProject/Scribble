@@ -165,11 +165,11 @@ export const saveNote = async(note)=> {
       note
     );
     console.log("saved note",noteSaved);
+    return noteSaved
   } catch (error) {
     console.log(error);
     return error
   }
 }
-
 
 
