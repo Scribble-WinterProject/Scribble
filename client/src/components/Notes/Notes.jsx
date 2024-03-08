@@ -84,14 +84,14 @@ function Notes() {
             <button onClick={handleNewNote}>Add new Node</button>
           </div>
         </div>
-        {/* <div>
+        <div>
           {notes.map((note) => (
             <Link to={`/note/${note.$id}`} key={note.$id}>
               {" "}
               <NotesCard note={note} />
             </Link>
           ))}
-        </div> */}
+        </div>
       </div>
     );
 }
