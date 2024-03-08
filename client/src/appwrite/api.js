@@ -173,3 +173,21 @@ export const saveNote = async(note)=> {
 }
 
 
+export const getNotes = async(id)=> {
+  try {
+    const notes = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      [Query.equal("user", id)],
+      100,
+      0,
+      "DESC",
+    );              
+    return notes;
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
+
+

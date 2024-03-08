@@ -9,7 +9,7 @@ import TemporaryDrawer from './../SideDrawer/Sidedrawer'
 import "./Notes.css"
 import ChatBotBtn from '../ChatBot/ChatBotBtn'
 import NotesCard from '../Home/NotesCard'
-import {  saveNote } from '../../appwrite/api'
+import {  saveNote,getNotes } from '../../appwrite/api'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
@@ -29,18 +29,18 @@ function Notes() {
         }
     };
 
-    // useEffect(() => {
-    //    const getUserNotes = async () => {
-    //      try {
-    //        const userNotes = await getNotes("65c1225f08bb0c43de89");
-    //        setNotes(userNotes.documents);
-    //        console.log("notes", notes);
-    //      } catch (error) {
-    //        console.log(error);
-    //      }
-    //    };
-    //    getUserNotes()
-    // }, [])
+    useEffect(() => {
+       const getUserNotes = async () => {
+         try {
+           const userNotes = await getNotes("65c1225f08bb0c43de89");
+           setNotes(userNotes.documents);
+           console.log("notes", notes);
+         } catch (error) {
+           console.log(error);
+         }
+       };
+       getUserNotes()
+    }, [])
     
 
     console.log(notes);
