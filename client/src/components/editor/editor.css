@@ -33,3 +33,19 @@
     color: #ffc078;
 }
 
+.editor-menu-options {
+    padding: 10px 10px;
+    background-color: #eee;
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.floating-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
