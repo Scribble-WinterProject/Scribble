@@ -4,6 +4,7 @@ import React from 'react'
 import TemporaryDrawer from '../SideDrawer/Sidedrawer'
 import Divider from '@mui/material/Divider';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 // import css
 import "./Home.css"
@@ -39,6 +40,9 @@ function Home() {
                 <div className="home-folder">
                     <div className="folder-title">
                         <h1>Recent Folders: </h1>
+                        <div className="drop-down-see-more">
+                            <ArrowDropDownIcon />
+                        </div>
                     </div>
                     <Divider />
                     <div className="card-wrapper">
@@ -51,6 +55,9 @@ function Home() {
                 <div className="home-notes">
                     <div className="folder-title">
                         <h1>Recent Notes: </h1>
+                        <div className="drop-down-see-more">
+                            <ArrowDropDownIcon />
+                        </div>
                     </div>
                     <Divider />
                     <div className="card-wrapper">

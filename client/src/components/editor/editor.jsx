@@ -28,6 +28,36 @@ import Youtube from "@tiptap/extension-youtube";
 import Bold from "@tiptap/extension-bold";
 import { useEffect } from "react";
 
+
+import "./editor.css"
+
+import { IconContext } from "react-icons";
+import { LuHeading1 } from "react-icons/lu";
+import { LuHeading2 } from "react-icons/lu";
+
+
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import LockIcon from '@mui/icons-material/Lock';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import AddLinkIcon from '@mui/icons-material/AddLink';
+import CodeIcon from '@mui/icons-material/Code';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import FormatStrikethroughIcon from '@mui/icons-material/FormatStrikethrough';
+import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
+import TextDecreaseIcon from '@mui/icons-material/TextDecrease';
+import SuperscriptIcon from '@mui/icons-material/Superscript';
+import SubscriptIcon from '@mui/icons-material/Subscript';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import LinkOffIcon from '@mui/icons-material/LinkOff';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+
 // import renderItems from "./suggestion/renderitems";
 
 // Create lowlight instance with common languages
@@ -72,19 +102,19 @@ export const FontSize = Extension.create({
     return {
       setFontSize:
         (fontSize) =>
-        ({ chain }) => {
-          return chain()
-            .setMark("textStyle", { fontSize: fontSize + "px" })
-            .run();
-        },
+          ({ chain }) => {
+            return chain()
+              .setMark("textStyle", { fontSize: fontSize + "px" })
+              .run();
+          },
       unsetFontSize:
         () =>
-        ({ chain }) => {
-          return chain()
-            .setMark("textStyle", { fontSize: null })
-            .removeEmptyTextStyle()
-            .run();
-        },
+          ({ chain }) => {
+            return chain()
+              .setMark("textStyle", { fontSize: null })
+              .removeEmptyTextStyle()
+              .run();
+          },
     };
   },
 });
@@ -153,138 +183,239 @@ const MenuBar = ({ editor }) => {
     editor.chain().unsetFontSize().run();
   };
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const open2 = Boolean(anchorEl2);
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  }
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    setAnchorEl2(null);
+  };
+
+
   return (
     <div className="menu-bar">
+
+      
+
       <button
         onClick={() =>
           editor.chain().focus().toggleCodeBlock({ language: "js" }).run()
         }
         className={editor.isActive("codeBlock") ? "is-active" : ""}
       >
-        toggleCodeBlock
+        <CodeIcon />
       </button>
-      <button onClick={addYoutubeVideo}>Add YouTube video</button>
+
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive("bold") ? "is-active" : ""}
       >
-        B
+        <FormatBoldIcon />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         className={editor.isActive("italic") ? "is-active" : ""}
       >
-        I
+        <FormatItalicIcon />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         className={editor.isActive("underline") ? "is-active" : ""}
       >
-        U
+        <FormatUnderlinedIcon />
       </button>
-      <button onClick={setFontSize}>Set Font Size</button>
-      <button onClick={unsetFontSize}>Unset Font Size</button>
+
       <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         className={editor.isActive("strike") ? "is-active" : ""}
       >
-        toggleStrike
+        <FormatStrikethroughIcon />
       </button>
+
+      <button onClick={setFontSize}>
+        <TextIncreaseIcon />
+      </button>
+      <button onClick={unsetFontSize}>
+        <TextDecreaseIcon />
+      </button>
+
       <button
         onClick={() => editor.chain().focus().toggleSubscript().run()}
         className={editor.isActive("subscript") ? "is-active" : ""}
       >
-        sub
+        <SubscriptIcon />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleSuperscript().run()}
         className={editor.isActive("superscript") ? "is-active" : ""}
       >
-        sup
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleHighlight({ color: "#ffc078" }).run()
-        }
-        className={
-          editor.isActive("highlight", { color: "#ffc078" }) ? "is-active" : ""
-        }
-      >
-        orange
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleHighlight({ color: "#8ce99a" }).run()
-        }
-        className={
-          editor.isActive("highlight", { color: "#8ce99a" }) ? "is-active" : ""
-        }
-      >
-        green
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleHighlight({ color: "#74c0fc" }).run()
-        }
-        className={
-          editor.isActive("highlight", { color: "#74c0fc" }) ? "is-active" : ""
-        }
-      >
-        blue
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleHighlight({ color: "#b197fc" }).run()
-        }
-        className={
-          editor.isActive("highlight", { color: "#b197fc" }) ? "is-active" : ""
-        }
-      >
-        purple
+        <SuperscriptIcon />
       </button>
 
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleHighlight({ color: "#ffa8a8" }).run()
-        }
-        className={
-          editor.isActive("highlight", { color: "#ffa8a8" }) ? "is-active" : ""
-        }
-      >
-        red
-      </button>
+
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
       >
-        h1
+        <IconContext.Provider value={{ size: "25px" }}>
+          <div>
+            <LuHeading1 />
+          </div>
+        </IconContext.Provider>
       </button>
+
+
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={editor.isActive("heading", { level: 2 }) ? "is-active" : ""}
       >
-        h2
+        <IconContext.Provider value={{ size: "25px" }}>
+          <div>
+            <LuHeading2 />
+          </div>
+        </IconContext.Provider>
       </button>
+
+
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive("bulletList") ? "is-active" : ""}
       >
-        bullet list
+        <FormatListBulletedIcon />
       </button>
 
-      <button
-        onClick={setLink}
-        className={editor.isActive("link") ? "is-active" : ""}
+      <Button
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
       >
-        setLink
-      </button>
-      <button
-        onClick={() => editor.chain().focus().unsetLink().run()}
-        disabled={!editor.isActive("link")}
+        <BorderColorIcon />
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
       >
-        unsetLink
-      </button>
-    </div>
+
+        <MenuItem onClick={handleClose}>
+          <div
+            className={`orange-highlight ${editor.isActive("highlight", { color: "#ffc078" }) ? "is-active" : ""}`}
+            onClick={() =>
+              editor.chain().focus().toggleHighlight({ color: "#ffc078" }).run()
+            }
+          >
+            Orange
+          </div>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <div
+            onClick={() =>
+              editor.chain().focus().toggleHighlight({ color: "#8ce99a" }).run()
+            }
+            className={`green-highlight ${editor.isActive("highlight", { color: "#8ce99a" }) ? "is-active" : ""}`}
+          >
+            Green
+          </div>
+
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <div
+            onClick={() =>
+              editor.chain().focus().toggleHighlight({ color: "#74c0fc" }).run()
+            }
+            className={`blue-highlight ${editor.isActive("highlight", { color: "#74c0fc" }) ? "is-active" : ""}`}
+          >
+            Blue
+          </div>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <div
+            onClick={() =>
+              editor.chain().focus().toggleHighlight({ color: "#b197fc" }).run()
+            }
+            className={`purple-highlight ${editor.isActive("highlight", { color: "#b197fc" }) ? "is-active" : ""}`}
+          >
+            Purple
+          </div>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <div
+            onClick={() =>
+              editor.chain().focus().toggleHighlight({ color: "#ffa8a8" }).run()
+            }
+            className={`red-highlight ${editor.isActive("highlight", { color: "#ffa8a8" }) ? "is-active" : ""}`}
+          >
+            red
+          </div>
+
+        </MenuItem>
+
+      </Menu>
+
+      <Button
+        id="basic-button2"
+        aria-controls={anchorEl2 ? "basic-menu2" : undefined}
+        aria-haspopup="true"
+        aria-expanded={anchorEl2 ? "true" : undefined}
+        onClick={handleClick2}
+      >
+        <AddLinkIcon />
+      </Button>
+      <Menu
+        id="basic-menu2"
+        anchorEl={anchorEl2}
+        open={Boolean(anchorEl2)}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button2",
+        }}
+      >
+        <MenuItem onClick={handleClose}>
+          <div onClick={addYoutubeVideo}>
+            <YouTubeIcon />
+          </div>
+        </MenuItem>
+
+
+        <MenuItem onClick={handleClose}>
+          <div
+            onClick={setLink}
+            className={editor.isActive("link") ? "is-active" : ""}
+          >
+            <InsertLinkIcon />
+          </div>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <div
+            onClick={() => editor.chain().focus().unsetLink().run()}
+            disabled={!editor.isActive("link")}
+          >
+            <LinkOffIcon />
+          </div>
+        </MenuItem>
+
+      </Menu>
+
+
+    </div >
   );
 };
 
@@ -363,12 +494,17 @@ const EditorComponent = ({ content }) => {
   return (
     <div className="editor">
       <div>
-        <input
-          type="checkbox"
-          checked={isEditable}
-          onChange={() => setIsEditable(!isEditable)}
-        />
-        Editable
+
+        <div
+          className="lock-button"
+          onClick={() => setIsEditable(!isEditable)}>
+          {isEditable ? (
+            <LockOpenIcon />
+          ) : (
+            <LockIcon />
+          )}
+        </div>
+
       </div>
 
       {editor && (
@@ -403,7 +539,7 @@ const EditorComponent = ({ content }) => {
       )}
 
       <MenuBar editor={editor} />
-      <button onClick={addImage}>Add Image</button>
+      <div onClick={addImage}><AddPhotoAlternateIcon /></div>
       <EditorContent editor={editor} />
     </div>
   );

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -8,6 +9,8 @@ import { logOut } from "../../appwrite/api";
 import { userLogOutMutation } from "../../reactQuery/queries";
 
 export default function TemporaryDrawer() {
+  const navigate = useNavigate();
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -36,16 +39,27 @@ export default function TemporaryDrawer() {
     }
   };
 
+  const handleClickNotes = () => {
+    navigate('/notes');
+  };
+  const handleClickHome = () => {
+    navigate('/home');
+  };
+  const handleClickLanding = () => {
+    navigate('/');
+  };
+
   const list = () => (
     <div className="side-bar">
-      <div className="title">
-        <h1>Scribble</h1>
+      <div className="title" onClick={handleClickLanding}>
+        <h1 className="scribble">Scribble</h1>
       </div>
 
       <div className="side-bar-options">
         <div className="upper-options">
           <ul>
-            <li>
+
+            <li onClick={handleClickHome}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 data-name="Layer 1"
@@ -67,7 +81,8 @@ export default function TemporaryDrawer() {
               </svg>
               Profile
             </li>
-            <li>
+
+            <li onClick={handleClickNotes}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -93,8 +108,16 @@ export default function TemporaryDrawer() {
               </svg>
               My Note
             </li>
+
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" enable-background="new 0 0 32 32" overflow="visible" viewBox="0 0 32 32" id="pdf"><switch><g><path fill="#f42727" d="M28,29V3c0-1.7-1.3-3-3-3H3c1.7,0,3,1.3,3,3v26c0,1.7,1.3,3,3,3
+							h22C29.3,32,28,30.7,28,29z"></path><path fill="#e20c0c" d="M3 0C1.3 0 0 1.3 0 3v3h6V3C6 1.3 4.7 0 3 0zM6.9 31.1C7.4 31.7 8.2 32 9 32h3v-6L6.9 31.1z"></path><path fill="#bf0202" d="M12,26v3c0,1.7-1.3,3-3,3h20c1.7,0,3-1.3,3-3v-3H12z"></path><path fill="#e6e6e6" d="M12.4 14.8c-.1 0-.2 0-.2 0-.1 0-.2 0-.2 0v1.9h-.9v-4.9h1.4c.2 0 .4 0 .6 0 .2 0 .3.1.5.1.3.1.6.3.8.5.2.2.3.5.3.9 0 .2 0 .4-.1.6-.1.2-.2.3-.4.5s-.4.2-.7.3C13.1 14.8 12.8 14.8 12.4 14.8zM12 14c.1 0 .1 0 .2 0 .1 0 .2 0 .2 0 .2 0 .4 0 .6-.1s.3-.1.4-.2.2-.2.2-.3c0-.1.1-.2.1-.3 0-.1 0-.3-.1-.4-.1-.1-.2-.2-.3-.2-.1 0-.2-.1-.3-.1-.1 0-.3 0-.5 0H12V14zM15.6 16.7v-4.9h1.3c.1 0 .2 0 .4 0 .1 0 .2 0 .3 0 .1 0 .2 0 .3.1s.2 0 .3.1c.3.1.5.2.7.3.2.1.4.3.5.5.1.2.2.4.3.6.1.2.1.5.1.8 0 .3 0 .5-.1.7-.1.2-.1.4-.3.6-.1.2-.3.4-.5.5-.2.1-.4.3-.6.4-.2.1-.4.1-.7.2s-.6.1-.9.1H15.6zM16.8 16c.5 0 .9-.1 1.2-.2.3-.1.5-.3.6-.6.1-.2.2-.6.2-.9 0-.2 0-.4-.1-.5s-.1-.3-.2-.4c-.1-.1-.2-.2-.3-.3-.1-.1-.3-.2-.4-.2-.1-.1-.3-.1-.5-.1-.2 0-.4 0-.6 0h-.4V16H16.8zM21.6 16.7h-.9v-4.9h3.1v.8h-2.2v1.3h1.9v.8h-1.9V16.7z"></path></g></switch></svg>
+              PDF's
+            </li>
           </ul>
         </div>
+
+
         <div className="lower-options">
           <ul>
             <li onClick={handleLogOut}>
@@ -123,8 +146,11 @@ export default function TemporaryDrawer() {
             </li>
           </ul>
         </div>
+
+
       </div>
-    </div>
+    </div >
+
   );
   const anchor = "left"; // Set anchor to 'left' only
 

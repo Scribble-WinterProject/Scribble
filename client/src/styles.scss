@@ -1,56 +1,54 @@
 // General editor styles
 .editor {
- width: 100%;
-
- max-height: 675px;
- margin: 0 auto;
- padding: 20px;
- background-color: #f9f9f9;
-    min-width: 90vw;
- border: 2px solid #000000;
- border-radius: 4px;
- box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-height: 675px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  // min-width: 90vw;
+  border: 1px solid #000000;
+  border-radius: 10px;
 }
 
 // Menu bar styles
 .menu-bar {
- display: flex;
- justify-content: space-between;
- padding: 10px 0;
- background-color: #eee;
- border-bottom: 1px solid #ddd;
- margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 0;
+  background-color: #eee;
+  margin-bottom: 20px;
 }
 
 .menu-bar button {
- background-color: transparent;
- border: none;
- color: #333;
- font-size: 14px;
- cursor: pointer;
- padding: 5px 10px;
- transition: background-color 0.2s ease;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.2s ease;
 
- &:hover {
+  &:hover {
     background-color: #ddd;
- }
+  }
 
- &.is-active {
+  &.is-active {
     background-color: #ddd;
- }
+  }
 }
 
 // Tiptap editor content styles
 .ProseMirror {
- min-height: 100vh;
+  min-height: 100vh;
 
- padding: 20px;
+  padding: 20px;
 
- border-radius: 4px;
- outline: none;
- font-family: 'Arial', sans-serif;
- font-size: 16px;
- line-height: 1.5;
+  border-radius: 4px;
+  outline: none;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 // .ProseMirror :nth-child(1){
@@ -66,52 +64,59 @@
 //    background-color: none;
 // }
 .ProseMirror .active-line {
- border: 2px solid #007bff; /* Example border style */
- border-radius: 4px; /* Optional: Add rounded corners */
- padding: 5px; /* Optional: Add some padding */
+  border: 2px solid #007bff;
+  /* Example border style */
+  border-radius: 4px;
+  /* Optional: Add rounded corners */
+  padding: 5px;
+  /* Optional: Add some padding */
 }
 
 .ProseMirror p {
- background-color: #f0f0f0; /* Light grey background */
- border:solid rgb(197, 197, 197) 1px;
- margin-top: 1px;
-  
- margin-bottom: 0px; /* Optional: Add some space between lines */
- padding: 10px 5px; /* Optional: Add some padding to the top and bottom of each line */
- 
+  background-color: #f0f0f0af;
+  /* Light grey background */
+  // border: solid rgb(197, 197, 197) 1px;
+  margin-top: 1px;
+
+  margin-bottom: 0px;
+  /* Optional: Add some space between lines */
+  padding: 10px 5px;
+  /* Optional: Add some padding to the top and bottom of each line */
+
 }
 
 // Active styles for bold, italic, strike, and code
 .ProseMirror .is-bold {
- font-weight: bold;
+  font-weight: bold;
 }
 
 .ProseMirror .is-italic {
- background-color: aqua;
- font-style: italic;
+  background-color: aqua;
+  font-style: italic;
 }
 
 .ProseMirror .is-strike {
- text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .ProseMirror .is-code {
- font-family: 'Courier New', Courier, monospace;
- color: #ddd;
- background-color: #141414;
- padding: 2px 4px;
- border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #ddd;
+  background-color: #141414;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
+
 .tiptap {
-  > * + * {
+  >*+* {
     margin-top: 0.75em;
-   
+
   }
 
   img {
     height: auto;
     max-width: 100%;
-   
+
 
     &.ProseMirror-selectednode {
       outline: 3px solid #000000;
@@ -120,7 +125,7 @@
 }
 
 .tiptap {
-  > * + * {
+  >*+* {
     margin-top: 0.75em;
   }
 
@@ -188,9 +193,10 @@
 
   .ProseMirror-selectednode iframe {
     transition: outline 0.15s;
-    
+
   }
 }
+
 mark {
   background-color: #ffe066;
   border-radius: 0.25em;

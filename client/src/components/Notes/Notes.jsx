@@ -14,8 +14,8 @@ function Notes() {
       <div className="navbar-home">
         <div className="left-navbar-home">
           <TemporaryDrawer />
-          <div className="title-navbar">
-            <h1>Scribble</h1>
+          <div className="title-navbar" >
+            <h1 className="scribble">Scribble</h1>
           </div>
         </div>
 
