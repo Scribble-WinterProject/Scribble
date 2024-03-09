@@ -8,6 +8,7 @@ import Home from "./components/Home/Home.jsx";
 import Notes from "../src/components/Notes/Notes.jsx";
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import ProfilePage from "./components/Profile/ProfilePage.jsx";
+import Pdf from "./components/PDF/Pdf.jsx";
 
 // import css
 import "./App.css";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/user/profile" element={<ProfilePage />} />
           <Route path="/notes" element={<Notes />} />
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
+          <Route path="/pdfupload" element={<Pdf />} />
         </Routes>
       </Router>
     </div>
