@@ -1,3 +1,4 @@
+
 import React from "react";
 
 // import component
@@ -24,6 +25,7 @@ function Notes() {
           </span>
         </div>
       </div>
+
     </div>
   );
 }

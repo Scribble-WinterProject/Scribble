@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 import "./NotesCard.css"
 
 function NotesCard(props) {
@@ -14,6 +15,7 @@ function NotesCard(props) {
                     <button className="acceptButton">Edit</button>
                     <button className="declineButton">Delete</button>
                 </div>
+
 
             </div>
         </div>
