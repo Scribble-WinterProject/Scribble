@@ -5,10 +5,10 @@ function NotesCard({note}) {
         <div>
             <div className="notes-card">
                 <div className="notes-card-title">
-                    <h1>Notes Card</h1>
+                    <h1>{note.title}</h1>
                 </div>
                 <div className="notes-card-body">
-                    <p>Notes Card Body</p>
+                    <p>{note.body}</p>
                 </div>
             </div>
         </div>

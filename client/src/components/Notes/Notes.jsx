@@ -3,12 +3,16 @@ import React from "react";
 // import component
 import TemporaryDrawer from "./../SideDrawer/Sidedrawer";
 
+
 // import css
 import "./Notes.css";
-import ChatBotBtn from "../ChatBot/ChatBotBtn";
+import ChatBot from "../ChatBot/ChatBot";
 import TiptapEditor from "../../Tiptap";
+import ChatBotBtn from "../ChatBot/ChatBotBtn";
+
 
 function Notes() {
+  
   return (
     <div className="notes-page-wrapper">
       <div className="navbar-home">

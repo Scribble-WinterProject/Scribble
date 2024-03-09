@@ -76,7 +76,7 @@ function Signup() {
           console.log("something went wrong");
         }
       } else if(user[0]!==undefined) {
-        navigate("/");
+        navigate("/home");
       }
     };
     checkSession();

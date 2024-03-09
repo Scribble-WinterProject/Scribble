@@ -36,7 +36,7 @@ function Login() {
       console.log("something went wrong");
     }
     console.log(user);
-    navigate("/");
+    navigate("/home");
   };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function Login() {
       console.log("user", user);
       if (user) {
         // localStorage.setItem("cookieFallback", "true");
-        navigate("/");
+        navigate("/home");
       } 
     };
     checkSession();

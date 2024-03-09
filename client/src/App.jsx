@@ -37,11 +37,8 @@ function App() {
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/user/profile" element={<ProfilePage />} />
           <Route path="/notes" element={<Notes />} />
-
-
-
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
-          <Route path="/pdfupload" element={<Pdf />} />
+          <Route path="/pdfupload/:id" element={<Pdf />} />
 
         </Routes>
       </Router>
