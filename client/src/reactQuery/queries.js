@@ -3,6 +3,7 @@ createUserAccount,
   logOut,
   passwordEmail,
   resetPassword,
+  saveNote,
 signInAccount
 } from "../appwrite/api";
 
@@ -40,3 +41,9 @@ export const userLogOutMutation = () => {
     mutationFn: () => logOut(),
   });
 };
+
+export const userSaveNoteMutation = () => {
+  return useMutation({
+    mutationFn: (note) => saveNote(note),
+  });
+}

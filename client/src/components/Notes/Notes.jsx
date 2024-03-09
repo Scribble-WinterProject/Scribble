@@ -12,6 +12,7 @@ import NotesCard from '../Home/NotesCard'
 import {  saveNote,getNotes, getCurrentUser } from '../../appwrite/api'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import { userSaveNoteMutation } from '../../reactQuery/queries'
 
 const initialValue = {}
 
@@ -19,11 +20,16 @@ function Notes() {
     const [notes,setNotes] = useState([])
     const navigate = useNavigate();
     const [user, setUser] = useState(initialValue);
+    const { mutateAsync: createNote, isPending: creatingNote } = userSaveNoteMutation();
 
 
     const handleNewNote = async() => {
         try {
-            const note = await saveNote({title: "New Note", body: "New Note Body",user: user?.$id})
+            const note = await createNote({
+              title: "New Note",
+              body: "New Note Body",
+              user: user?.$id,
+            });
             navigate(`/note/${note.$id}`);
         } catch (error) {
             console.log(error);
