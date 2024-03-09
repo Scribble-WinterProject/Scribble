@@ -25,11 +25,7 @@ function Notes() {
 
     const handleNewNote = async() => {
         try {
-            const note = await createNote({
-              title: "New Note",
-              body: "New Note Body",
-              user: user?.$id,
-            });
+            const note = await createNote({title: "New Note", body: "New Note Body",user: user?.$id})
             navigate(`/note/${note.$id}`);
         } catch (error) {
             console.log(error);

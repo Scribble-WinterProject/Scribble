@@ -1,5 +1,6 @@
 import {
 createUserAccount,
+  getNotes,
   logOut,
   passwordEmail,
   resetPassword,
