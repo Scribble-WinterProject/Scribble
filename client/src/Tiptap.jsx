@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import Tiptap from "./components/editor/editor";
 
 import React from "react";
+
 import { getNote } from "./appwrite/api";
+
+import Loader from "./components/Loader/Loader";
+
 
 const TiptapEditor = ({id}) => {
   const [dataNote, setDataNote] = useState(null);
@@ -25,7 +29,11 @@ const TiptapEditor = ({id}) => {
   }, []);
 
   if (!dataNote) {
-    return <div>load</div>;
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
   }
   return (
     <>
