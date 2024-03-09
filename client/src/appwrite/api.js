@@ -224,7 +224,7 @@ export const pdfUpload = async({file,noteId})=> {
         fileUrl: preview,
         note: noteId,
       }
-    )
+  )
 
     if(!createPdf) {
       throw new Error("error while creating pdf");
