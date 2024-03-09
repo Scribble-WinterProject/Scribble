@@ -4,20 +4,21 @@
   max-height: 675px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
   // min-width: 90vw;
-  border: 1px solid #000000;
-  border-radius: 10px;
+  // border: 1px solid #000000;
+  // border-radius: 10px;
 }
 
 // Menu bar styles
 .menu-bar {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 10px 0;
+
   background-color: #eee;
-  margin-bottom: 20px;
+
 }
 
 .menu-bar button {
@@ -42,7 +43,7 @@
 .ProseMirror {
   min-height: 100vh;
 
-  padding: 20px;
+  padding: 20px 0px;
 
   border-radius: 4px;
   outline: none;
