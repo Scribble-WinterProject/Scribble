@@ -49,11 +49,9 @@ function Home() {
   const handleNewNote = async () => {
     try {
       const note = await createNote({
-        title: "New Note",
-        body: "New Note Body",
         user: user?.$id,
       });
-      navigate(`/note/${note.$id}`);
+      navigate(`/notes/${note.$id}`);
     } catch (error) {
       console.log(error);
     }
@@ -108,7 +106,7 @@ function Home() {
           </div>
           <div className="card-wrapper">
             {notes.map((note) => (
-              <Link to={`/note/${note.$id}`}>
+              <Link to={`/notes/${note.$id}`}>
                 <NotesCard key={note.$id} note={note} />
               </Link>
             ))}

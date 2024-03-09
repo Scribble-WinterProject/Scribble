@@ -36,7 +36,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/user/profile" element={<ProfilePage />} />
-          <Route path="/notes" element={<Notes />} />
+          <Route path="/notes/:id" element={<Notes />} />
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
           <Route path="/pdfupload/:id" element={<Pdf />} />
 

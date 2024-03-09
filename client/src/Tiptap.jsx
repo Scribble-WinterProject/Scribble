@@ -3,14 +3,15 @@ import Tiptap from "./components/editor/editor";
 import { FetchAndParseNotes } from "./integration/server";
 
 import React from "react";
+import { getNote } from "./appwrite/api";
 
-const TiptapEditor = () => {
+const TiptapEditor = ({id}) => {
   const [dataNote, setDataNote] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData = await FetchAndParseNotes("65e60c40617c9e90eed6");
+        const fetchedData = await getNote(id);
         setDataNote(fetchedData);
         console.log("====================================");
         console.log("app", dataNote);

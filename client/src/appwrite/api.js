@@ -236,3 +236,20 @@ export const pdfUpload = async({file,noteId})=> {
   }
 }
 
+export const getNote = async(id)=> {
+  try {
+    const note = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id,
+    );
+    console.log(note);
+    note.body = JSON.parse(note.body);
+    console.log(note.body);
+    return note.body;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
