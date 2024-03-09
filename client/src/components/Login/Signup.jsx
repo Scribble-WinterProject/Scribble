@@ -41,7 +41,7 @@ function Signup() {
     }
 
     console.log(newUser);
-    navigate("/");
+    navigate("/login");
   };
 
   const handleGoogleAuth = async (e) => {

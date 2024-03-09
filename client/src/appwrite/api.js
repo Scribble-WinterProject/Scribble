@@ -1,5 +1,5 @@
 import { ID, Permission, Role,Query } from "appwrite";
-import { account, appwriteConfig, avatars, databases, storage } from "./config";
+import { account, appwriteConfig, avatars, databases} from "./config";
 
 export const createUserAccount = async (user) => {
   try {
@@ -192,49 +192,49 @@ export const getNotes = async(id)=> {
 }
 
 
-const pdfUpload = async({file,noteId})=> {
-  try {
-    const upload = await storage.createFile(
-      appwriteConfig.storageId,
-      ID.unique(),
-      file[0],
-    );
-    if(!upload) {
-      throw new Error("error while uploading file");
-    }
+// const pdfUpload = async({file,noteId})=> {
+//   try {
+//     const upload = await storage.createFile(
+//       appwriteConfig.storageId,
+//       ID.unique(),
+//       file[0],
+//     );
+//     if(!upload) {
+//       throw new Error("error while uploading file");
+//     }
 
-    const preview = await storage.getFilePreview(
-      appwriteConfig.storageId,
-      upload.$id,
-      200,
-      200,
-      'fill',
-      100,
-    );
+//     const preview = await storage.getFilePreview(
+//       appwriteConfig.storageId,
+//       upload.$id,
+//       200,
+//       200,
+//       'fill',
+//       100,
+//     );
 
-    if(!preview) {
-      throw new Error("error while getting file preview");
-    }
+//     if(!preview) {
+//       throw new Error("error while getting file preview");
+//     }
 
-    const createPdf = await databases.createDocument(
-      appwriteConfig.databaseId,
-      appwriteConfig.pdfId,
-      ID.unique(),
-      {
-        note: noteId,
-        noteId: noteId,
-        fileUrl: preview,
-      }
-    )
+//     const createPdf = await databases.createDocument(
+//       appwriteConfig.databaseId,
+//       appwriteConfig.pdfId,
+//       ID.unique(),
+//       {
+//         note: noteId,
+//         noteId: noteId,
+//         fileUrl: preview,
+//       }
+//     )
 
-    if(!createPdf) {
-      throw new Error("error while creating pdf");
-    }
+//     if(!createPdf) {
+//       throw new Error("error while creating pdf");
+//     }
 
-    return createFile
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
+//     return createFile
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
 
