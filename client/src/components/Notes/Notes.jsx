@@ -9,7 +9,7 @@ import TemporaryDrawer from './../SideDrawer/Sidedrawer'
 import "./Notes.css"
 import ChatBotBtn from '../ChatBot/ChatBotBtn'
 import NotesCard from '../Home/NotesCard'
-import {  saveNote,getNotes } from '../../appwrite/api'
+import {  saveNote,getNotes, getCurrentUser } from '../../appwrite/api'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
@@ -18,11 +18,12 @@ const initialValue = {}
 function Notes() {
     const [notes,setNotes] = useState([])
     const navigate = useNavigate();
+    const [user, setUser] = useState(initialValue);
 
 
     const handleNewNote = async() => {
         try {
-            const note = await saveNote({title: "New Note", body: "New Note Body",user: "65c1225f08bb0c43de89"})
+            const note = await saveNote({title: "New Note", body: "New Note Body",user: user?.$id})
             navigate(`/note/${note.$id}`);
         } catch (error) {
             console.log(error);
@@ -32,7 +33,11 @@ function Notes() {
     useEffect(() => {
        const getUserNotes = async () => {
          try {
-           const userNotes = await getNotes("65c1225f08bb0c43de89");
+          const data = await getCurrentUser();
+          const user = data[3]
+          if(!user) navigate("/login")
+          setUser(user);
+           const userNotes = await getNotes(user.$id);
            setNotes(userNotes.documents);
            console.log("notes", notes);
          } catch (error) {

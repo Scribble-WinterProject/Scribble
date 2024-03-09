@@ -16,6 +16,7 @@ import "./App.css"
 
 import { ForgetPassword } from './components/Login/ForgetPassword.jsx';
 import Edit from "../Editor.jsx";
+import { NotePage } from './components/notepage/NotePage.jsx';
 
 // import { Home } from './reactQuery/pages/Home/Home.jsx';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/user/profile" element={<ProfilePage />} />
           <Route path="/notes" element={<Notes />} />
           <Route path="/editor" element={<Edit />} />
+          <Route path="/note/:id" element={<NotePage />} />
         </Routes>
       </Router>
     </div>

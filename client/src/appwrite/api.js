@@ -138,7 +138,8 @@ export const getCurrentUser = async () => {
     return [
       currentUser.documents.length,
       currentAccount,
-      avatar
+      avatar,
+      currentUser.documents[0],
     ];
   } catch (error) {
     console.log(error);
