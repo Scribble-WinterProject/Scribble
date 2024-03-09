@@ -3,6 +3,7 @@ import Tiptap from "./components/editor/editor";
 import { FetchAndParseNotes } from "./integration/server";
 
 import React from "react";
+import Loader from "./components/Loader/Loader";
 
 const TiptapEditor = () => {
   const [dataNote, setDataNote] = useState(null);
@@ -24,7 +25,11 @@ const TiptapEditor = () => {
   }, []);
 
   if (!dataNote) {
-    return <div>load</div>;
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
   }
   return (
     <>

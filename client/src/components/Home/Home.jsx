@@ -45,9 +45,9 @@ function Home() {
                     </div>
                     <Divider />
                     <div className="card-wrapper">
-                        <FolderCard />
-                        <FolderCard />
-                        <FolderCard />
+                        <FolderCard title="Hello Everyone" createdAt="26/10/2024" />
+                        <FolderCard title="Hello Everyone" createdAt="26/10/2024" />
+                        <FolderCard title="Hello Everyone" createdAt="26/10/2024" />
                     </div>
                 </div>
 
@@ -60,9 +60,9 @@ function Home() {
                     </div>
                     <Divider />
                     <div className="card-wrapper">
-                        <NotesCard />
-                        <NotesCard />
-                        <NotesCard />
+                        <NotesCard title="Hello Everyone" description="Hello Everyone , Good morning" createdAt="26/10/2024" />
+                        <NotesCard title="Hello Everyone" description="Hello Everyone , Good morning" createdAt="26/10/2024" />
+                        <NotesCard title="Hello Everyone" description="Hello Everyone , Good morning" createdAt="26/10/2024" />
                     </div>
                 </div>
             </div>
