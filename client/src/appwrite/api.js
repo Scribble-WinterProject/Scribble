@@ -38,7 +38,7 @@ export const saveUser = async (user) => {
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       ID.unique(),
-      user
+      user,
     );
     return newUser;
   } catch (error) {
@@ -125,14 +125,13 @@ export const getCurrentUser = async () => {
     if (!currentAccount) {
       throw new Error("unauthorized");
     }
-
+    console.log("current account", currentAccount);
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       [Query.equal("accountId", currentAccount.$id)],
     );
-
-    console.log("current user", currentUser.documents.length);
+    console.log("current user", currentUser);
 
     const avatar = avatars.getInitials(currentAccount.name);
     return [
@@ -192,7 +191,7 @@ export const getNotes = async(id)=> {
 }
 
 
-const pdfUpload = async({file,noteId})=> {
+export const pdfUpload = async({file,noteId})=> {
   try {
     const upload = await storage.createFile(
       appwriteConfig.storageId,

@@ -42,8 +42,10 @@ function Login() {
   useEffect(() => {
     const checkSession = async () => {
       const user = await account.get();
+      
       console.log("user", user);
       if (user) {
+        // localStorage.setItem("cookieFallback", "true");
         navigate("/");
       } 
     };
@@ -53,7 +55,10 @@ function Login() {
 
   const handleGoogleAuth = async (e) => {
     e.preventDefault();
-    await googleAuth(searchParams.pathname);
+    await googleAuth(searchParams.pathname).then((res) => {
+      console.log(res);
+
+    })
   };
 
   const handleForgetPaasword = async(e) => {

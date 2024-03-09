@@ -36,12 +36,13 @@ function Notes() {
        const getUserNotes = async () => {
          try {
           const data = await getCurrentUser();
+          console.log(data);
           const user = data[3]
+          console.log("user", user);
           if(!user) navigate("/login")
           setUser(user);
-           const userNotes = await getNotes(user.$id);
+           const userNotes = await getNotes(user?.$id);
            setNotes(userNotes.documents);
-           console.log("notes", notes);
          } catch (error) {
            console.log(error);
          }
@@ -49,9 +50,6 @@ function Notes() {
        getUserNotes()
     }, [])
     
-
-    console.log(notes);
-
    
     return (
       // <div className='notes-page-wrapper'>

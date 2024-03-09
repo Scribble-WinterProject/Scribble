@@ -8,7 +8,7 @@ import {
   saveUser,
 } from "../../appwrite/api.js";
 
-import { useCreateAccountMutation } from "../../reactQuery/queries.js";
+import { useCreateAccountMutation, userSignInMutation } from "../../reactQuery/queries.js";
 
 
 import "./Login.css";
@@ -19,6 +19,8 @@ function Signup() {
   const searchParams = useLocation();
   const { mutateAsync: createUser, isPending: creatingUser } =
     useCreateAccountMutation();
+      const { mutateAsync: loginUser, isPending: loggingIn } = userSignInMutation();
+
 
 
   const switchToLogin = () => {
@@ -40,8 +42,13 @@ function Signup() {
       console.log("something went wrong");
     }
 
+    const logedUser = await loginUser(formData.email, formData.password);
+    if(!logedUser){
+      console.log("something went wrong");
+    }
+
     console.log(newUser);
-    navigate("/");
+    navigate("/login");
   };
 
   const handleGoogleAuth = async (e) => {
