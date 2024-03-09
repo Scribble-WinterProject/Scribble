@@ -1,0 +1,20 @@
+.feature-card {
+    /* background-color: antiquewhite; */
+    height: 300px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+.feature-image-container img {
+    height: 200px;
+    margin-bottom: 20px;
+}

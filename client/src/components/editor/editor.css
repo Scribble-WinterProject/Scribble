@@ -1,0 +1,35 @@
+.orange-highlight,
+.green-highlight,
+.blue-highlight,
+.red-highlight,
+.purple-highlight {
+    width: 100%;
+
+    text-align: center;
+}
+
+.purple-highlight {
+    background-color: #b197fc;
+    color: #b197fc;
+}
+
+.red-highlight {
+    background-color: #ffa8a8;
+    color: #ffa8a8;
+}
+
+.blue-highlight {
+    background-color: #74c0fc;
+    color: #74c0fc;
+}
+
+.green-highlight {
+    background-color: #8ce99a;
+    color: #8ce99a;
+}
+
+.orange-highlight {
+    background-color: #ffc078;
+    color: #ffc078;
+}
+

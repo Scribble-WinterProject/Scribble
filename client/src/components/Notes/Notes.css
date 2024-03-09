@@ -1,33 +1,39 @@
 .notes-page-wrapper {
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    /* background-color: blue; */
+  /* height: 100vh; */
+  width: 100%;
+  overflow: hidden;
+  /* background-color: blue; */
+}
+
+.TiptapEditor {
+  width: 30vw;
 }
 
 .text-editor-wrapper {
-    height: 100%;
-    display: flex;
-    /*justify-content: space-around; */
-    /* align-items: baseline; */
+  margin-top: 15px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*justify-content: space-around; */
+  /* align-items: baseline; */
 }
 
 .text-editor {
-    height: 100%;
-    width: 90%;
-    margin: 20px auto;
-    margin-bottom: 20px;
-    border: 1px solid grey
+  height: 100%;
+  width: 90%;
+  margin: 20px 20px;
+  margin-bottom: 20px;
+  /* border: 1px solid grey; */
 }
 
 .chat-bot-btn {
-    height: 100%;
-    position: relative;
+  height: 100%;
+  /* position: relative; */
 }
 
-
 .tbn {
-    position: absolute;
-    bottom: 60px;
-    right: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

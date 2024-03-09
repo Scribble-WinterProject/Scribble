@@ -99,6 +99,7 @@
     height: 50px;
     width: 100%;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .button-submit:hover {
@@ -135,11 +136,9 @@
 
 .btn:hover {
     border: 1px solid #2d79f3;
-    ;
 }
 
 .google {
     font-weight: 550;
     font-size: large;
 }
-

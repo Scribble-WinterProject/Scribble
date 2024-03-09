@@ -1,0 +1,106 @@
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.landing-navbar {
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+
+.landing-navbar h1 {
+    font-family: 'Pacifico', cursive;
+}
+
+.landing-navbar button {
+    height: 40px;
+    width: 100px;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
+.hero-section {
+    margin: 70px 30px 40px;
+    min-height: 400px;
+    /* width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-info {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    /* background-color: yellow; */
+
+}
+
+.hero-info h1 {
+    margin-top: 20px;
+    font-family: 'Pacifico', cursive;
+    font-size: 70px;
+}
+
+.hero-info p {
+    font-size: 20px;
+    margin: 20px 0px;
+}
+
+.hero-info button {
+    height: 40px;
+    width: 100px;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.image-container img {
+    margin-right: 40px;
+    height: 400px;
+}
+
+.feature-heading {
+    text-align: center;
+    font-size: 25px;
+    margin: 40px 0px;
+    font-family: 'Pacifico', cursive;
+}
+
+.feature-card-wrapper {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 40px;
+    flex-wrap: wrap;
+}
+
+.footer {
+    padding: 50px 0px;
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.footer h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    font-weight: 400;
+}
