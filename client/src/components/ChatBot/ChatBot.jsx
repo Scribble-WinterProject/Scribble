@@ -13,8 +13,10 @@ function ChatBot() {
         setinput(e.target.value)
     }
 
-    const handleAiInput = async() => {
+    const handleAiInput = async(e) => {
+      e.preventDefault()
         console.log(input)
+        
         const res = await analyze(input)
         setaiText(res)
         console.log(res);
@@ -25,24 +27,20 @@ function ChatBot() {
           <div className="chat-header">
             <div className="h2">AI ChatBot</div>
           </div>
-          <div className="chat-body">
+          <div className="chat-body scrollable">
             <div className="message incoming">
               <p>{aiText}</p>
             </div>
-            <div className="message outgoing">
-              <p>{input}</p>
-            </div>
-            {/* <div className="message incoming">
-              <p>Sure, I'm here to help. What would you like to know?</p>
-            </div> */}
           </div>
           <div className="chat-footer">
-            <input
-              placeholder="Type your message"
-              type="text"
-              onChange={handleAiInputChange}
-            />
-            <button onClick={handleAiInput}>Send</button>
+            <form onSubmit={handleAiInput}>
+              <input
+                placeholder="Type your message"
+                type="text"
+                onChange={handleAiInputChange}
+              />
+              <button type="submit">Send</button>
+            </form>
           </div>
         </div>
       </div>

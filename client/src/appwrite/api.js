@@ -1,5 +1,5 @@
 import { ID, Permission, Role,Query } from "appwrite";
-import { account, appwriteConfig, avatars, databases } from "./config";
+import { account, appwriteConfig, avatars, databases, storage} from "./config";
 
 export const createUserAccount = async (user) => {
   try {
@@ -138,7 +138,8 @@ export const getCurrentUser = async () => {
     return [
       currentUser.documents.length,
       currentAccount,
-      avatar
+      avatar,
+      currentUser.documents[0],
     ];
   } catch (error) {
     console.log(error);
@@ -156,5 +157,83 @@ export const logOut = async()=> {
   }
 }
 
+export const saveNote = async(note)=> {
+  try {
+    const noteSaved = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      ID.unique(),
+      note
+    );
+    console.log("saved note",noteSaved);
+    return noteSaved
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
 
+
+export const getNotes = async(id)=> {
+  try {
+    const notes = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      [Query.equal("user", id)],
+      100,
+      0,
+      "DESC",
+    );              
+    return notes;
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
+
+
+export const pdfUpload = async({file,noteId})=> {
+  try {
+    const upload = await storage.createFile(
+      appwriteConfig.storageId,
+      ID.unique(),
+      file,
+    );
+    if(!upload) {
+      throw new Error("error while uploading file");
+    }
+
+    const preview = await storage.getFilePreview(
+      appwriteConfig.storageId,
+      upload.$id,
+      200,
+      200,
+      'fill',
+      100,
+    );
+
+    if(!preview) {
+      throw new Error("error while getting file preview");
+    }
+
+    const createPdf = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.pdfId,
+      ID.unique(),
+      {
+        fileUrl: preview,
+        note: noteId,
+      }
+    )
+
+    if(!createPdf) {
+      throw new Error("error while creating pdf");
+    }
+
+    return createPdf
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
 

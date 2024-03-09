@@ -11,7 +11,16 @@ import ProfilePage from "./components/Profile/ProfilePage.jsx";
 import Pdf from "./components/PDF/Pdf.jsx";
 
 // import css
+
+
+
+
+import { NotePage } from './components/notepage/NotePage.jsx';
+
+// import { Home } from './reactQuery/pages/Home/Home.jsx';
+
 import "./App.css";
+
 
 import { ForgetPassword } from "./components/Login/ForgetPassword.jsx";
 import TiptapEditor from "./Tiptap.jsx";
@@ -28,8 +37,12 @@ function App() {
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/user/profile" element={<ProfilePage />} />
           <Route path="/notes" element={<Notes />} />
+
+
+
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
           <Route path="/pdfupload" element={<Pdf />} />
+
         </Routes>
       </Router>
     </div>
