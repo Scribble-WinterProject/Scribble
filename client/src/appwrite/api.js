@@ -38,7 +38,7 @@ export const saveUser = async (user) => {
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       ID.unique(),
-      user
+      user,
     );
     return newUser;
   } catch (error) {
@@ -125,14 +125,13 @@ export const getCurrentUser = async () => {
     if (!currentAccount) {
       throw new Error("unauthorized");
     }
-
+    console.log("current account", currentAccount);
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       [Query.equal("accountId", currentAccount.$id)],
     );
-
-    console.log("current user", currentUser.documents.length);
+    console.log("current user", currentUser);
 
     const avatar = avatars.getInitials(currentAccount.name);
     return [
@@ -234,6 +233,43 @@ export const pdfUpload = async({file,noteId})=> {
   } catch (error) {
     console.log(error);
     return error;
+  }
+}
+
+export const getNote = async(id)=> {
+  try {
+    const note = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id,
+    );
+    console.log(note);
+    note.body = JSON.parse(note.body);
+    console.log(note.body);
+    return note.body;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+export const updateNote = async(id,data)=> {
+  try {
+    const jsonData = JSON.stringify(data);
+    
+      const updatesData = await databases.updateDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.noteId,
+        id,
+        {
+          body: jsonData,
+        },
+      );
+      return updatesData;
+  
+  } catch (error) {
+    console.log(error);
+    return error
   }
 }
 

@@ -1,4 +1,5 @@
 import { Client, Databases } from "appwrite";
+import { appwriteConfig } from "../appwrite/config";
 
 const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1")
@@ -9,12 +10,12 @@ const databases = new Databases(client);
 export const FetchAndParseNotes = async (documentId) => {
   try {
     const document = await databases.getDocument(
-      "65b93eda2b9c92a52e24",
-      "65b93efccc7d4c315af6",
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
       documentId,
     );
 
-    if (document.Notes) {
+    if (document) {
       document.Notes = JSON.parse(document.Notes);
       console.log(document.Notes);
     }

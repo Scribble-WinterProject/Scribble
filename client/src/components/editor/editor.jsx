@@ -57,6 +57,7 @@ import LinkOffIcon from '@mui/icons-material/LinkOff';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { updateNote } from "../../appwrite/api";
 
 // import renderItems from "./suggestion/renderitems";
 
@@ -419,7 +420,7 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const EditorComponent = ({ content }) => {
+const EditorComponent = ({ content,id }) => {
   const [files, setFiles] = useState([]);
 
   const handleDragOver = (e) => {
@@ -468,9 +469,9 @@ const EditorComponent = ({ content }) => {
     onUpdate: async ({ editor }) => {
       const jsoner = await editor.getJSON();
       const text = await editor.getText();
-      await UpdateNotes("65e60c40617c9e90eed6", jsoner);
+      const updated = await updateNote(id, jsoner);
       console.log("====================================");
-      console.log(text);
+      console.log(updated);
       console.log("====================================");
     },
   });

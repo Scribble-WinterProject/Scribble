@@ -36,15 +36,17 @@ function Login() {
       console.log("something went wrong");
     }
     console.log(user);
-    navigate("/");
+    navigate("/home");
   };
 
   useEffect(() => {
     const checkSession = async () => {
       const user = await account.get();
+      
       console.log("user", user);
       if (user) {
-        navigate("/");
+        // localStorage.setItem("cookieFallback", "true");
+        navigate("/home");
       } 
     };
     checkSession();
@@ -53,7 +55,10 @@ function Login() {
 
   const handleGoogleAuth = async (e) => {
     e.preventDefault();
-    await googleAuth(searchParams.pathname);
+    await googleAuth(searchParams.pathname).then((res) => {
+      console.log(res);
+
+    })
   };
 
   const handleForgetPaasword = async(e) => {

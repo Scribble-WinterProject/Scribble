@@ -9,7 +9,7 @@ export const NotePage = () => {
     console.log(file);
     if (file) {
       if (file.type === "application/pdf" && file.size <= 5 * 1024 * 1024) {
-      setfile(file)
+        setfile(file);
       } else {
         console.log(
           "Please select a PDF file of size less than or equal to 5MB.",
@@ -18,12 +18,12 @@ export const NotePage = () => {
     }
   };
 
-  const handleSubmit = async(e)=> {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const noteId = "65eca05a5639e6561692";
-    const upload = await pdfUpload({file,noteId});
-    console.log("upload",upload);
-  }
+    const upload = await pdfUpload({ file, noteId });
+    console.log("upload", upload);
+  };
 
   return (
     <div>
