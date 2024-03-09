@@ -1,15 +1,22 @@
 import React from 'react'
 
-function NotesCard({note}) {
+
+import "./NotesCard.css"
+
+function NotesCard(props) {
     return (
         <div>
             <div className="notes-card">
-                <div className="notes-card-title">
-                    <h1>Notes Card</h1>
+                <p className="cookieHeading">{props.title}</p>
+                <p className="cookieDescription">{props.description}</p>
+                <p className="cookieDescription">Created at: {props.createdAt}</p>
+
+                <div className="buttonContainer">
+                    <button className="acceptButton">Edit</button>
+                    <button className="declineButton">Delete</button>
                 </div>
-                <div className="notes-card-body">
-                    <p>Notes Card Body</p>
-                </div>
+
+
             </div>
         </div>
     )
