@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     /* text-align: center; */
     font-size: 20px;
     font-weight: 500;
@@ -49,4 +50,8 @@
 .side-bar li:hover {
     cursor: pointer;
     font-weight: 700;
+}
+
+.scribble:hover {
+    cursor: pointer;
 }

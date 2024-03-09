@@ -1,0 +1,206 @@
+// General editor styles
+.editor {
+  width: 100%;
+  max-height: 675px;
+  margin: 0 auto;
+  padding: 20px;
+  // background-color: #f9f9f9;
+  // min-width: 90vw;
+  // border: 1px solid #000000;
+  // border-radius: 10px;
+}
+
+// Menu bar styles
+.menu-bar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background-color: #eee;
+
+}
+
+.menu-bar button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  &.is-active {
+    background-color: #ddd;
+  }
+}
+
+// Tiptap editor content styles
+.ProseMirror {
+  min-height: 100vh;
+
+  padding: 20px 0px;
+
+  border-radius: 4px;
+  outline: none;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+// .ProseMirror :nth-child(1){
+//      border: 1px solid #ddd;
+//      background-color: #959494;
+// }
+// .ProseMirror :nth-child(2){
+//      border: 1px solid #ddd;
+//      background-color: #f4e5e5;
+// }
+// .ProseMirror :nth-last-child(1){
+//    border: 1px solid #00056e;
+//    background-color: none;
+// }
+.ProseMirror .active-line {
+  border: 2px solid #007bff;
+  /* Example border style */
+  border-radius: 4px;
+  /* Optional: Add rounded corners */
+  padding: 5px;
+  /* Optional: Add some padding */
+}
+
+.ProseMirror p {
+  background-color: #f0f0f0af;
+  /* Light grey background */
+  // border: solid rgb(197, 197, 197) 1px;
+  margin-top: 1px;
+
+  margin-bottom: 0px;
+  /* Optional: Add some space between lines */
+  padding: 10px 5px;
+  /* Optional: Add some padding to the top and bottom of each line */
+
+}
+
+// Active styles for bold, italic, strike, and code
+.ProseMirror .is-bold {
+  font-weight: bold;
+}
+
+.ProseMirror .is-italic {
+  background-color: aqua;
+  font-style: italic;
+}
+
+.ProseMirror .is-strike {
+  text-decoration: line-through;
+}
+
+.ProseMirror .is-code {
+  font-family: 'Courier New', Courier, monospace;
+  color: #ddd;
+  background-color: #141414;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.tiptap {
+  >*+* {
+    margin-top: 0.75em;
+
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+
+
+    &.ProseMirror-selectednode {
+      outline: 3px solid #000000;
+    }
+  }
+}
+
+.tiptap {
+  >*+* {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
+
+  code {
+    background-color: rgba(#616161, 0.1);
+    color: #616161;
+  }
+
+  pre {
+    background: #0D0D0D;
+    color: #FFF;
+    font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+
+    code {
+      color: inherit;
+      padding: 0;
+      background: none;
+      font-size: 0.8rem;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  hr {
+    margin: 1rem 0;
+  }
+
+  blockquote {
+    padding-left: 1rem;
+    border-left: 2px solid rgba(#0D0D0D, 0.1);
+  }
+
+  iframe {
+    border: 1px solid #7e7e7e;
+    border-radius: 1px;
+    min-width: 200px;
+    min-height: 200px;
+    display: block;
+    outline: 0px solid transparent;
+  }
+
+  div[data-youtube-video] {
+    cursor: move;
+    padding-right: 24px;
+  }
+
+  .ProseMirror-selectednode iframe {
+    transition: outline 0.15s;
+
+  }
+}
+
+mark {
+  background-color: #ffe066;
+  border-radius: 0.25em;
+  box-decoration-break: clone;
+  padding: 0.125em 0;
+}

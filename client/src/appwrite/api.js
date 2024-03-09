@@ -1,5 +1,5 @@
 import { ID, Permission, Role,Query } from "appwrite";
-import { account, appwriteConfig, avatars, databases, storage } from "./config";
+import { account, appwriteConfig, avatars, databases, storage} from "./config";
 
 export const createUserAccount = async (user) => {
   try {
@@ -196,7 +196,7 @@ export const pdfUpload = async({file,noteId})=> {
     const upload = await storage.createFile(
       appwriteConfig.storageId,
       ID.unique(),
-      file[0],
+      file,
     );
     if(!upload) {
       throw new Error("error while uploading file");
@@ -220,17 +220,16 @@ export const pdfUpload = async({file,noteId})=> {
       appwriteConfig.pdfId,
       ID.unique(),
       {
-        note: noteId,
-        noteId: noteId,
         fileUrl: preview,
+        note: noteId,
       }
-    )
+  )
 
     if(!createPdf) {
       throw new Error("error while creating pdf");
     }
 
-    return createFile
+    return createPdf
   } catch (error) {
     console.log(error);
     return error;
