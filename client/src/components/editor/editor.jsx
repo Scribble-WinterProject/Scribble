@@ -202,7 +202,7 @@ const MenuBar = ({ editor }) => {
   return (
     <div className="menu-bar">
 
-      
+
 
       <button
         onClick={() =>
@@ -493,23 +493,10 @@ const EditorComponent = ({ content }) => {
 
   return (
     <div className="editor">
-      <div>
-
-        <div
-          className="lock-button"
-          onClick={() => setIsEditable(!isEditable)}>
-          {isEditable ? (
-            <LockOpenIcon />
-          ) : (
-            <LockIcon />
-          )}
-        </div>
-
-      </div>
 
       {editor && (
-        <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <button
+        <FloatingMenu className='floating-menu' editor={editor} tippyOptions={{ duration: 100 }}>
+          <div
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
             }
@@ -517,9 +504,13 @@ const EditorComponent = ({ content }) => {
               editor.isActive("heading", { level: 1 }) ? "is-active" : ""
             }
           >
-            h1
-          </button>
-          <button
+            <IconContext.Provider value={{ size: "25px" }}>
+              <div>
+                <LuHeading1 />
+              </div>
+            </IconContext.Provider>
+          </div>
+          <div
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 2 }).run()
             }
@@ -527,19 +518,39 @@ const EditorComponent = ({ content }) => {
               editor.isActive("heading", { level: 2 }) ? "is-active" : ""
             }
           >
-            h2
-          </button>
-          <button
+            <IconContext.Provider value={{ size: "25px" }}>
+              <div>
+                <LuHeading2 />
+              </div>
+            </IconContext.Provider>
+          </div>
+          <div
             onClick={() => editor.chain().focus().toggleBulletList().run()}
             className={editor.isActive("bulletList") ? "is-active" : ""}
           >
-            bullet list
-          </button>
+            <FormatListBulletedIcon />
+          </div>
         </FloatingMenu>
       )}
 
-      <MenuBar editor={editor} />
-      <div onClick={addImage}><AddPhotoAlternateIcon /></div>
+      <div className="editor-menu-options">
+        <div>
+
+          <div
+            className="lock-button"
+            onClick={() => setIsEditable(!isEditable)}>
+            {isEditable ? (
+              <LockOpenIcon />
+            ) : (
+              <LockIcon />
+            )}
+          </div>
+
+        </div>
+        <div onClick={addImage}><AddPhotoAlternateIcon /></div>
+        <MenuBar editor={editor} />
+      </div>
+
       <EditorContent editor={editor} />
     </div>
   );
