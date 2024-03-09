@@ -253,3 +253,23 @@ export const getNote = async(id)=> {
   }
 }
 
+export const updateNote = async(id,data)=> {
+  try {
+    const jsonData = JSON.stringify(data);
+    
+      const updatesData = await databases.updateDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.noteId,
+        id,
+        {
+          body: jsonData,
+        },
+      );
+      return updatesData;
+  
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
+

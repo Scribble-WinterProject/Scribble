@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Tiptap from "./components/editor/editor";
-import { FetchAndParseNotes } from "./integration/server";
 
 import React from "react";
 import { getNote } from "./appwrite/api";
@@ -15,6 +14,7 @@ const TiptapEditor = ({id}) => {
         setDataNote(fetchedData);
         console.log("====================================");
         console.log("app", dataNote);
+        setDataNote(fetchedData)
         console.log("====================================");
       } catch (error) {
         console.error("Some error has occurred:", error);
@@ -30,7 +30,7 @@ const TiptapEditor = ({id}) => {
   return (
     <>
       <div>
-        <Tiptap content={dataNote} />
+        <Tiptap content={dataNote} id={id}/>
       </div>
     </>
   );
