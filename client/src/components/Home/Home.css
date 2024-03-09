@@ -29,12 +29,13 @@
     line-height: 28px;
     padding: 0 1rem;
     padding-left: 2.5rem;
-    border: 2px solid transparent;
+    border: 1px solid #9e9ea7;
     border-radius: 8px;
     outline: none;
     background-color: #fff;
     color: #0d0c22;
     transition: 0.3s ease;
+
 }
 
 .search-input::placeholder {
@@ -147,4 +148,15 @@
 .folder-card-create-new span {
     height: 24px;
     width: 24px;
+}
+
+.folder-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.drop-down-see-more {
+    cursor: pointer;
 }
