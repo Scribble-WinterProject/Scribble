@@ -3,49 +3,73 @@
 .blue-highlight,
 .red-highlight,
 .purple-highlight {
-    width: 100%;
+  width: 100%;
 
-    text-align: center;
+  text-align: center;
 }
 
 .purple-highlight {
-    background-color: #b197fc;
-    color: #b197fc;
+  background-color: #b197fc;
+  color: #b197fc;
 }
 
 .red-highlight {
-    background-color: #ffa8a8;
-    color: #ffa8a8;
+  background-color: #ffa8a8;
+  color: #ffa8a8;
 }
 
 .blue-highlight {
-    background-color: #74c0fc;
-    color: #74c0fc;
+  background-color: #74c0fc;
+  color: #74c0fc;
 }
 
 .green-highlight {
-    background-color: #8ce99a;
-    color: #8ce99a;
+  background-color: #8ce99a;
+  color: #8ce99a;
 }
 
 .orange-highlight {
-    background-color: #ffc078;
-    color: #ffc078;
+  background-color: #ffc078;
+  color: #ffc078;
 }
 
 .editor-menu-options {
-    padding: 10px 10px;
-    background-color: #eee;
-    gap: 20px;
-    width: 100%;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
+  padding: 10px 10px;
+  background-color: #eee;
+  gap: 2rem;
+
+  width: 95vw;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .floating-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
+
+.menu-bar {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px;
+}
+
+.menu-bar button {
+  margin-right: 8px; /* Add some spacing between buttons */
+}
+
+/* Media query for mobile view */
+@media only screen and (max-width: 1000px) {
+  .menu-bar {
+    flex-wrap: nowrap; /* Allow wrapping in mobile view */
+    overflow-y: none;
+    padding-top: 19px; /* Vertical scrolling if needed */
+    max-height: 70px; /* Set a maximum height for vertical scrolling */
+  }
+}
+
+/* Add other styles as needed */

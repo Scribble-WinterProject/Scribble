@@ -1,5 +1,5 @@
-import { ID, Permission, Role,Query } from "appwrite";
-import { account, appwriteConfig, avatars, databases, storage} from "./config";
+import { ID, Permission, Role, Query } from "appwrite";
+import { account, appwriteConfig, avatars, databases, storage } from "./config";
 
 export const createUserAccount = async (user) => {
   try {
@@ -7,14 +7,14 @@ export const createUserAccount = async (user) => {
       ID.unique(),
       user.email,
       user.password,
-      user.name,
+      user.name
     );
 
     if (!newAccount) {
       throw new Error("error while createing new account");
     }
 
-    console.log("new account is ",newAccount);
+    console.log("new account is ", newAccount);
     const avatar = avatars.getInitials(user.name);
 
     const newUser = await saveUser({
@@ -29,7 +29,6 @@ export const createUserAccount = async (user) => {
     console.log(error);
     return error;
   }
-  
 };
 
 export const saveUser = async (user) => {
@@ -38,7 +37,7 @@ export const saveUser = async (user) => {
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       ID.unique(),
-      user,
+      user
     );
     return newUser;
   } catch (error) {
@@ -62,44 +61,46 @@ export const googleAuth = async (path) => {
     const res = await account.createOAuth2Session(
       "google",
       `http://localhost:5173${path}`,
-      `http://localhost:5173${path}`,
+      `http://localhost:5173${path}`
     );
     console.log(res.href);
-
   } catch (error) {
     console.log(error);
     return error;
   }
-}
+};
 
-export const getSession = async() => {
+export const getSession = async () => {
   try {
-   const session = account.getSession("current");
+    const session = account.getSession("current");
 
-   session.then(
-     function (response) {
-       console.log(response); // Success
-     },
-     function (error) {
-       console.log(error); // Failure
-     },
-   );
-   return
+    session.then(
+      function (response) {
+        console.log(response); // Success
+      },
+      function (error) {
+        console.log(error); // Failure
+      }
+    );
+    return;
   } catch (error) {
     console.log(error);
     return error;
   }
-}
+};
 
 export const passwordEmail = async (email) => {
   try {
-    const response = await account.createRecovery(email,"http://localhost:5173/forgetPassword");
+    const response = await account.createRecovery(
+      email,
+      "http://localhost:5173/forgetPassword"
+    );
     return response;
   } catch (error) {
     console.log(error);
     return error;
   }
-}
+};
 
 export const resetPassword = async (userId, secret, password) => {
   try {
@@ -108,9 +109,9 @@ export const resetPassword = async (userId, secret, password) => {
       userId,
       secret,
       password,
-      password,
+      password
     );
-    console.log(response); 
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -129,7 +130,7 @@ export const getCurrentUser = async () => {
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userId,
-      [Query.equal("accountId", currentAccount.$id)],
+      [Query.equal("accountId", currentAccount.$id)]
     );
     console.log("current user", currentUser);
 
@@ -146,7 +147,7 @@ export const getCurrentUser = async () => {
   }
 };
 
-export const logOut = async()=> {
+export const logOut = async () => {
   try {
     const response = await account.deleteSession("current");
     return response;
@@ -154,9 +155,9 @@ export const logOut = async()=> {
     console.log(error);
     return error;
   }
-}
+};
 
-export const saveNote = async(note)=> {
+export const saveNote = async (note) => {
   try {
     const noteSaved = await databases.createDocument(
       appwriteConfig.databaseId,
@@ -164,16 +165,15 @@ export const saveNote = async(note)=> {
       ID.unique(),
       note
     );
-    console.log("saved note",noteSaved);
-    return noteSaved
+    console.log("saved note", noteSaved);
+    return noteSaved;
   } catch (error) {
     console.log(error);
-    return error
+    return error;
   }
-}
+};
 
-
-export const getNotes = async(id)=> {
+export const getNotes = async (id) => {
   try {
     const notes = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -181,24 +181,23 @@ export const getNotes = async(id)=> {
       [Query.equal("user", id)],
       100,
       0,
-      "DESC",
-    );              
+      "DESC"
+    );
     return notes;
   } catch (error) {
     console.log(error);
-    return error
+    return error;
   }
-}
+};
 
-
-export const pdfUpload = async({file,noteId})=> {
+export const pdfUpload = async ({ file, noteId }) => {
   try {
     const upload = await storage.createFile(
       appwriteConfig.storageId,
       ID.unique(),
-      file,
+      file
     );
-    if(!upload) {
+    if (!upload) {
       throw new Error("error while uploading file");
     }
 
@@ -207,11 +206,11 @@ export const pdfUpload = async({file,noteId})=> {
       upload.$id,
       200,
       200,
-      'fill',
-      100,
+      "fill",
+      100
     );
 
-    if(!preview) {
+    if (!preview) {
       throw new Error("error while getting file preview");
     }
 
@@ -223,25 +222,25 @@ export const pdfUpload = async({file,noteId})=> {
         fileUrl: preview,
         note: noteId,
       }
-  )
+    );
 
-    if(!createPdf) {
+    if (!createPdf) {
       throw new Error("error while creating pdf");
     }
 
-    return createPdf
+    return createPdf;
   } catch (error) {
     console.log(error);
     return error;
   }
-}
+};
 
-export const getNote = async(id)=> {
+export const getNote = async (id) => {
   try {
     const note = await databases.getDocument(
       appwriteConfig.databaseId,
       appwriteConfig.noteId,
-      id,
+      id
     );
     console.log(note);
     note.body = JSON.parse(note.body);
@@ -251,25 +250,90 @@ export const getNote = async(id)=> {
     console.log(error);
     return error;
   }
-}
-
-export const updateNote = async(id,data)=> {
+};
+export const getNoteFull = async (id) => {
   try {
-    const jsonData = JSON.stringify(data);
-    
-      const updatesData = await databases.updateDocument(
-        appwriteConfig.databaseId,
-        appwriteConfig.noteId,
-        id,
-        {
-          body: jsonData,
-        },
-      );
-      return updatesData;
-  
+    const note = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id
+    );
+    console.log(note);
+    note.body = JSON.parse(note.body);
+    console.log(note.body);
+    return note;
   } catch (error) {
     console.log(error);
-    return error
+    return error;
   }
-}
+};
+export const updateNote = async (id, data) => {
+  try {
+    const jsonData = JSON.stringify(data);
 
+    const updatesData = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id,
+      {
+        body: jsonData,
+      }
+    );
+    return updatesData;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+export const updateNoteTitle = async (id, title) => {
+  try {
+    // Prepare the data object with only the title
+    const jsonData = JSON.stringify({ title: title });
+
+    const updatesData = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id,
+      {
+        title: title,
+      }
+    );
+    return updatesData;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+export const getNoteTitleById = async (documentId) => {
+  try {
+    // Fetch the document by its ID
+    const document = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      documentId
+    );
+
+    // Extract the title from the document's data
+    const title = document.title; // Assuming the title is stored under the 'title' key
+
+    return title;
+  } catch (error) {
+    console.log(error);
+    return null; // Return null or handle the error as appropriate
+  }
+};
+
+export const getPdfByNoteId = async (id) => {
+  try {
+    console.log("id hai mc", id);
+
+    const note = await getNoteFull(id);
+    console.log("====================================");
+    console.log(note.pdfs);
+
+    return note.pdfs;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};

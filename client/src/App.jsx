@@ -12,18 +12,18 @@ import Pdf from "./components/PDF/Pdf.jsx";
 
 // import css
 
-
-
-
-import { NotePage } from './components/notepage/NotePage.jsx';
+import { NotePage } from "./components/notepage/NotePage.jsx";
 
 // import { Home } from './reactQuery/pages/Home/Home.jsx';
 
 import "./App.css";
 
-
 import { ForgetPassword } from "./components/Login/ForgetPassword.jsx";
 import TiptapEditor from "./Tiptap.jsx";
+
+import { NotePdfCard } from "./components/PDF/NotePdfCard.jsx";
+import { AllPdfs } from "./components/PDF/AllPdfs.jsx";
+import PdfViewer from "./components/PDF/PdfReader.jsx";
 
 function App() {
   return (
@@ -39,7 +39,9 @@ function App() {
           <Route path="/notes/:id" element={<Notes />} />
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
           <Route path="/pdfupload/:id" element={<Pdf />} />
-
+          <Route path="/pdfupload/note/pdf/:id" element={<NotePdfCard />} />
+          <Route path="/pdfupload/" element={<AllPdfs />} />
+          <Route path="/pdf-viewer/:pdfUrl" element={<PdfViewer />} />
         </Routes>
       </Router>
     </div>

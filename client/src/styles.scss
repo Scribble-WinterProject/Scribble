@@ -12,7 +12,8 @@
   width: 100%;
   max-height: 675px;
   margin: 0 auto;
-  padding: 20px;
+  
+  // padding: 20px;
   // background-color: #f9f9f9;
   // min-width: 90vw;
   // border: 1px solid #000000;
@@ -72,15 +73,7 @@
 // .ProseMirror :nth-last-child(1){
 //    border: 1px solid #00056e;
 //    background-color: none;
-// }
-.ProseMirror .active-line {
-  border: 2px solid #007bff;
-  /* Example border style */
-  border-radius: 4px;
-  /* Optional: Add rounded corners */
-  padding: 5px;
-  /* Optional: Add some padding */
-}
+
 
 .ProseMirror p {
   background-color: #f0f0f0af;

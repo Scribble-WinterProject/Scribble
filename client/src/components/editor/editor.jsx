@@ -10,6 +10,7 @@ import Superscript from "@tiptap/extension-superscript";
 import Highlight from "@tiptap/extension-highlight";
 import { EditorContent } from "@tiptap/react";
 import Link from "@tiptap/extension-link";
+
 import { Extension } from "@tiptap/react";
 import "../../styles.scss";
 import { useEditor, FloatingMenu } from "@tiptap/react";
@@ -28,35 +29,33 @@ import Youtube from "@tiptap/extension-youtube";
 import Bold from "@tiptap/extension-bold";
 import { useEffect } from "react";
 
-
-import "./editor.css"
+import "./editor.css";
 
 import { IconContext } from "react-icons";
 import { LuHeading1 } from "react-icons/lu";
 import { LuHeading2 } from "react-icons/lu";
 
-
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import LockIcon from '@mui/icons-material/Lock';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import AddLinkIcon from '@mui/icons-material/AddLink';
-import CodeIcon from '@mui/icons-material/Code';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import FormatStrikethroughIcon from '@mui/icons-material/FormatStrikethrough';
-import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
-import TextDecreaseIcon from '@mui/icons-material/TextDecrease';
-import SuperscriptIcon from '@mui/icons-material/Superscript';
-import SubscriptIcon from '@mui/icons-material/Subscript';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import LinkOffIcon from '@mui/icons-material/LinkOff';
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import LockIcon from "@mui/icons-material/Lock";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import AddLinkIcon from "@mui/icons-material/AddLink";
+import CodeIcon from "@mui/icons-material/Code";
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
+import FormatItalicIcon from "@mui/icons-material/FormatItalic";
+import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import FormatStrikethroughIcon from "@mui/icons-material/FormatStrikethrough";
+import TextIncreaseIcon from "@mui/icons-material/TextIncrease";
+import TextDecreaseIcon from "@mui/icons-material/TextDecrease";
+import SuperscriptIcon from "@mui/icons-material/Superscript";
+import SubscriptIcon from "@mui/icons-material/Subscript";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import LinkOffIcon from "@mui/icons-material/LinkOff";
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { updateNote } from "../../appwrite/api";
 
 // import renderItems from "./suggestion/renderitems";
@@ -103,45 +102,22 @@ export const FontSize = Extension.create({
     return {
       setFontSize:
         (fontSize) =>
-          ({ chain }) => {
-            return chain()
-              .setMark("textStyle", { fontSize: fontSize + "px" })
-              .run();
-          },
+        ({ chain }) => {
+          return chain()
+            .setMark("textStyle", { fontSize: fontSize + "px" })
+            .run();
+        },
       unsetFontSize:
         () =>
-          ({ chain }) => {
-            return chain()
-              .setMark("textStyle", { fontSize: null })
-              .removeEmptyTextStyle()
-              .run();
-          },
+        ({ chain }) => {
+          return chain()
+            .setMark("textStyle", { fontSize: null })
+            .removeEmptyTextStyle()
+            .run();
+        },
     };
   },
 });
-const initialContent = {
-  type: "doc",
-  content: [
-    {
-      type: "heading",
-      attrs: { level: 2 },
-      content: [{ type: "text", text: "sndcdn" }],
-    },
-    {
-      type: "paragraph",
-      content: [
-        { type: "text", text: "This is a " },
-        { type: "text", marks: [{ type: "italic" }], text: "basic" },
-        { type: "text", text: " example of " },
-        { type: "text", marks: [{ type: "bold" }], text: "tiptap" },
-        {
-          type: "text",
-          text: ". Sure, there are all kinds of basic text styles you’d probably expect from a text editor. But wait until you see the lists:",
-        },
-      ],
-    },
-  ],
-};
 
 const MenuBar = ({ editor }) => {
   if (!editor) {
@@ -176,12 +152,12 @@ const MenuBar = ({ editor }) => {
   const setFontSize = () => {
     const fontSize = window.prompt("Enter font size (e.g., 16):");
     if (fontSize) {
-      editor.chain().setFontSize(fontSize).run();
+      editor.chain().focus().setFontSize(fontSize).run();
     }
   };
 
   const unsetFontSize = () => {
-    editor.chain().unsetFontSize().run();
+    editor.chain().focus().unsetFontSize().run();
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -190,7 +166,7 @@ const MenuBar = ({ editor }) => {
   const open2 = Boolean(anchorEl2);
   const handleClick2 = (event) => {
     setAnchorEl2(event.currentTarget);
-  }
+  };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -199,12 +175,8 @@ const MenuBar = ({ editor }) => {
     setAnchorEl2(null);
   };
 
-
   return (
     <div className="menu-bar">
-
-
-
       <button
         onClick={() =>
           editor.chain().focus().toggleCodeBlock({ language: "js" }).run()
@@ -240,12 +212,12 @@ const MenuBar = ({ editor }) => {
         <FormatStrikethroughIcon />
       </button>
 
-      <button onClick={setFontSize}>
+      {/* <button onClick={setFontSize}>
         <TextIncreaseIcon />
       </button>
       <button onClick={unsetFontSize}>
         <TextDecreaseIcon />
-      </button>
+      </button> */}
 
       <button
         onClick={() => editor.chain().focus().toggleSubscript().run()}
@@ -260,7 +232,6 @@ const MenuBar = ({ editor }) => {
         <SuperscriptIcon />
       </button>
 
-
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
@@ -272,7 +243,6 @@ const MenuBar = ({ editor }) => {
         </IconContext.Provider>
       </button>
 
-
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={editor.isActive("heading", { level: 2 }) ? "is-active" : ""}
@@ -283,7 +253,6 @@ const MenuBar = ({ editor }) => {
           </div>
         </IconContext.Provider>
       </button>
-
 
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -310,7 +279,6 @@ const MenuBar = ({ editor }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-
         <MenuItem onClick={handleClose}>
           <div
             className={`orange-highlight ${editor.isActive("highlight", { color: "#ffc078" }) ? "is-active" : ""}`}
@@ -331,7 +299,6 @@ const MenuBar = ({ editor }) => {
           >
             Green
           </div>
-
         </MenuItem>
 
         <MenuItem onClick={handleClose}>
@@ -365,9 +332,7 @@ const MenuBar = ({ editor }) => {
           >
             red
           </div>
-
         </MenuItem>
-
       </Menu>
 
       <Button
@@ -394,7 +359,6 @@ const MenuBar = ({ editor }) => {
           </div>
         </MenuItem>
 
-
         <MenuItem onClick={handleClose}>
           <div
             onClick={setLink}
@@ -412,26 +376,26 @@ const MenuBar = ({ editor }) => {
             <LinkOffIcon />
           </div>
         </MenuItem>
-
       </Menu>
-
-
-    </div >
+    </div>
   );
 };
 
-const EditorComponent = ({ content,id }) => {
+const EditorComponent = ({ content, id }) => {
   const [files, setFiles] = useState([]);
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
+  const [debounceTimer, setDebounceTimer] = useState(null);
+  const updateNoteWithDebounce = useCallback(async (editor) => {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    const timerId = setTimeout(async () => {
+      const jsoner = await editor.getJSON();
+      const text = await editor.getText();
+      const updated = await updateNote(id, jsoner);
+      console.log("====================================");
+      console.log(updated);
+      console.log("====================================");
+    }, 500); // 500ms delay
+    setDebounceTimer(timerId);
+  }, []);
 
   const editor = useEditor({
     extensions: [
@@ -466,13 +430,8 @@ const EditorComponent = ({ content,id }) => {
       }),
     ],
     content: content,
-    onUpdate: async ({ editor }) => {
-      const jsoner = await editor.getJSON();
-      const text = await editor.getText();
-      const updated = await updateNote(id, jsoner);
-      console.log("====================================");
-      console.log(updated);
-      console.log("====================================");
+    onUpdate: ({ editor }) => {
+      updateNoteWithDebounce(editor);
     },
   });
   const [isEditable, setIsEditable] = React.useState(true);
@@ -494,9 +453,12 @@ const EditorComponent = ({ content,id }) => {
 
   return (
     <div className="editor">
-
       {editor && (
-        <FloatingMenu className='floating-menu' editor={editor} tippyOptions={{ duration: 100 }}>
+        <FloatingMenu
+          className="floating-menu"
+          editor={editor}
+          tippyOptions={{ duration: 100 }}
+        >
           <div
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
@@ -536,19 +498,16 @@ const EditorComponent = ({ content,id }) => {
 
       <div className="editor-menu-options">
         <div>
-
           <div
             className="lock-button"
-            onClick={() => setIsEditable(!isEditable)}>
-            {isEditable ? (
-              <LockOpenIcon />
-            ) : (
-              <LockIcon />
-            )}
+            onClick={() => setIsEditable(!isEditable)}
+          >
+            {isEditable ? <LockOpenIcon /> : <LockIcon />}
           </div>
-
         </div>
-        <div onClick={addImage}><AddPhotoAlternateIcon /></div>
+        <div onClick={addImage}>
+          <AddPhotoAlternateIcon />
+        </div>
         <MenuBar editor={editor} />
       </div>
 

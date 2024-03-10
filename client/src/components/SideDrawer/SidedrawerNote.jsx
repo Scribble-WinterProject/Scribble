@@ -7,8 +7,9 @@ import Button from "@mui/material/Button";
 import "./Sidedrawer.css";
 import { logOut } from "../../appwrite/api";
 import { userLogOutMutation } from "../../reactQuery/queries";
+import { NotePdfCard } from "../PDF/NotePdfCard";
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawerNote() {
   const navigate = useNavigate();
 
   const [state, setState] = React.useState({
@@ -146,6 +147,9 @@ export default function TemporaryDrawer() {
               PDF's
             </li>
           </ul>
+        </div>
+        <div className="pdfs">
+          <NotePdfCard />
         </div>
 
         <div className="lower-options">

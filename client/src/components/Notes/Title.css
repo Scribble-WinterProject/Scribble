@@ -1,0 +1,89 @@
+.wave-group {
+  position: relative;
+}
+
+.wave-group .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+}
+
+.wave-group .input:focus {
+  outline: none;
+}
+
+.wave-group .label-char {
+  transition: 0.2s ease all;
+  transition-delay: calc(var(--index) * 0.05s);
+}
+
+.wave-group .input:focus ~ label .label-char,
+.wave-group .input:valid ~ label .label-char {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #5264ae;
+}
+
+.wave-group .bar {
+  position: relative;
+  display: block;
+  width: 200px;
+}
+
+.wave-group .bar:before,
+.wave-group .bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+  left: 50%;
+}
+
+.wave-group .bar:after {
+  right: 50%;
+}
+
+.wave-group .input:focus ~ .bar:before,
+.wave-group .input:focus ~ .bar:after {
+  width: 50%;
+}
+/* Title.css */
+.wave-group {
+  position: relative;
+  margin: 10px 0;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 24px; /* Adjust font size as needed */
+  font-weight: bold; /* Make the font bolder */
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #999; /* Light grey color for the label */
+  pointer-events: none; /* Prevents the label from being clickable */
+  transition: 0.2s ease all; /* Smooth transition for the label */
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  top: -20px;
+  font-size: 14px; /* Smaller font size for the label when input is focused or has text */
+  color: #555; /* Darker grey color for the label */
+}
