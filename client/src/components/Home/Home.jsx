@@ -20,6 +20,7 @@ import {
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { userSaveNoteMutation } from "../../reactQuery/queries";
+import { avatars } from "../../appwrite/config";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -31,12 +32,24 @@ function Home() {
     const getUserNotes = async () => {
       try {
         const data = await getCurrentUser();
+        const account = data[1];
         const user = data[3];
-        if (!user) {
+        if (!account) {
           navigate("/login"); // Redirect to login page if user is not found
           return;
         }
-        setUser(user); // Update user state
+        if(!user) {
+          const accountId = account.$id;
+          const avatar = avatars.getInitials(account.name)
+          const newUser = await saveUser({
+            accountId: accountId,
+            email: account.email,
+            imageurl: avatar,
+            fullname: account.name,
+          });
+          setUser(newUser); 
+        }
+        setUser(user); 
         const userNotes = await getNotes(user.$id);
         setNotes(userNotes.documents);
       } catch (error) {

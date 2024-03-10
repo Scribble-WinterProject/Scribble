@@ -7,9 +7,6 @@ function NotesCard({note}) {
                 <div className="notes-card-title">
                     <h1>{note.title}</h1>
                 </div>
-                <div className="notes-card-body">
-                    <p>{note.body}</p>
-                </div>
             </div>
         </div>
     )
