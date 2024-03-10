@@ -125,13 +125,11 @@ export const getCurrentUser = async () => {
     if (!currentAccount) {
       throw new Error("unauthorized");
     }
-    console.log("current account", currentAccount);
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       [Query.equal("accountId", currentAccount.$id)],
     );
-    console.log("current user", currentUser);
 
     const avatar = avatars.getInitials(currentAccount.name);
     return [
@@ -275,12 +273,14 @@ export const updateNote = async(id,data)=> {
 
 export const getPdfByNoteId = async(id)=> {
    try {
+    console.log("id hai mc", id);
     const pdfs = await databases.listDocuments(
+      
       appwriteConfig.databaseId,
       appwriteConfig.pdfId,
       [Query.equal("note", id)],
     );
-    return pdfs.documents[0];
+    return pdfs.documents;
    } catch (error) {
     console.log(error);
     return error
