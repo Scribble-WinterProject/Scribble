@@ -8,12 +8,21 @@ export const NotePdfCard = ({note}) => {
        const getPdf = async()=> {
         console.log(note.$id);
         const pdfs = await getPdfByNoteId(note.$id)
-        console.log(pdfs);
+        setpdfs(pdfs)
        }
        getPdf()
     },[])
-    console.log(pdfs);
   return (
-    <div>NotePdfCard</div>
+    <div>
+      {
+        pdfs.map((pdf)=>(
+          <div key={pdf.$id}>
+            <h1>{pdf.title}</h1>
+            <a href={pdf.fileUrl} target="_blank" rel="noreferrer">View</a>
+          </div>
+        ))
+        
+      }
+    </div>
   )
 }

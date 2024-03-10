@@ -89,45 +89,73 @@ function Home() {
         </div>
       </div>
 
-      <div className="home-folder-notes">
-        <div className="home-folder">
-          <div className="folder-title">
-            <h1>Recent Folders: </h1>
-            <div className="drop-down-see-more">
-              <ArrowDropDownIcon />
-            </div>
-          </div>
-          <Divider />
-          <div className="card-wrapper">
-            <FolderCard />
-            <FolderCard />
-            <FolderCard />
-          </div>
-        </div>
 
-        <div className="home-notes">
-          <div className="folder-title">
-            <h1>Recent Notes: </h1>
-            <div className="drop-down-see-more">
-              <ArrowDropDownIcon />
-            </div>
-          </div>
-          <div className="notes-card" onClick={handleNewNote}>
-            <div className="notes-card-title">
-              <h1>Add New</h1>
-            </div>
-          </div>
-          <div className="card-wrapper">
-            {notes.map((note) => (
-              <Link to={`/notes/${note.$id}`}>
-                <NotesCard key={note.$id} note={note} />
-              </Link>
-            ))}
-          </div>
-          <Divider />
-          <div className="card-wrapper"></div>
-        </div>
-      </div>
+//       <div className="home-folder-notes">
+//         <div className="home-folder">
+//           <div className="folder-title">
+//             <h1>Recent Folders: </h1>
+//             <div className="drop-down-see-more">
+//               <ArrowDropDownIcon />
+//             </div>
+//           </div>
+//           <Divider />
+//           <div className="card-wrapper">
+//             <FolderCard />
+//             <FolderCard />
+//             <FolderCard />
+//           </div>
+//         </div>
+
+//         <div className="home-notes">
+//           <div className="folder-title">
+//             <h1>Recent Notes: </h1>
+//             <div className="drop-down-see-more">
+//               <ArrowDropDownIcon />
+//             </div>
+//           </div>
+//           <div className="notes-card" onClick={handleNewNote}>
+//             <div className="notes-card-title">
+//               <h1>Add New</h1>
+
+//                 <div className="home-folder">
+//                     <div className="folder-title">
+//                         <h1>Recent Folders: </h1>
+//                         <div className="drop-down-see-more">
+//                             <ArrowDropDownIcon />
+//                         </div>
+//                     </div>
+//                     <Divider />
+//                     <div className="card-wrapper">
+//                         <FolderCard title="Hello Everyone" createdAt="26/10/2024" />
+//                         <FolderCard title="Hello Everyone" createdAt="26/10/2024" />
+//                         <FolderCard title="Hello Everyone" createdAt="26/10/2024" />
+//                     </div>
+//                 </div>
+
+//                 <div className="home-notes">
+//                     <div className="folder-title">
+//                         <h1>Recent Notes: </h1>
+//                         <div className="drop-down-see-more">
+//                             <ArrowDropDownIcon />
+//                         </div>
+//                     </div>
+//                     <Divider />
+//                     <div className="card-wrapper">
+//                         <NotesCard title="Hello Everyone" description="Hello Everyone , Good morning" createdAt="26/10/2024" />
+//                         <NotesCard title="Hello Everyone" description="Hello Everyone , Good morning" createdAt="26/10/2024" />
+//                         <NotesCard title="Hello Everyone" description="Hello Everyone , Good morning" createdAt="26/10/2024" />
+//                     </div>
+//                 </div>
+
+//             </div>
+//           </div>
+//           <div className="card-wrapper">
+//             
+//           </div>
+//           <Divider />
+//           <div className="card-wrapper"></div>
+//         </div>
+//       </div>
     </div>
   );
 }
