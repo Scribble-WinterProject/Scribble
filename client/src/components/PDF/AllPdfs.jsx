@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getCurrentUser, getNotes, saveUser } from '../../appwrite/api'
+import { getCurrentUser, getNotes, getPdfByNoteId, saveUser } from '../../appwrite/api'
 import { avatars } from '../../appwrite/config';
 import { NotePdfCard } from './NotePdfCard';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export const AllPdfs = () => {
     const [currUser, setcurrUser] = useState({})
     const [notes, setNotes] = useState([]);
+    const [notePdf,setNotePdf] = useState([{}])
     useEffect(() => {
       const getUserNotes = async () => {
         try {
@@ -14,7 +15,7 @@ export const AllPdfs = () => {
           const account = data[1];
           const user = data[3];
           if (!account) {
-            navigate("/login"); // Redirect to login page if user is not found
+            navigate("/login");
             return;
           }
           if (!user) {
@@ -30,7 +31,11 @@ export const AllPdfs = () => {
           }
           setcurrUser(user);
           const userNotes = await getNotes(user.$id);
+        //   console.log(userNotes);
           setNotes(userNotes.documents);
+          const pdf = await getPdfByNoteId("65edba50b8adafaa19ab")
+          console.log(pdf);
+
         } catch (error) {
           console.log(error);
         }
@@ -40,11 +45,12 @@ export const AllPdfs = () => {
     console.log(notes);
   return (
     <div>
-      {notes.map((note) => (
-        <Link to={`note/pdf/${note.$id}`}>
+      {/* {notes.map((note) => (
+        <Link to={`note/pdf/${note.$id}`} key={note.$id}>
           <NotePdfCard note={note} />
         </Link>
-      ))}
+      ))} */}
+      hlo
     </div>
   );
 }

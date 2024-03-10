@@ -273,3 +273,16 @@ export const updateNote = async(id,data)=> {
   }
 }
 
+export const getPdfByNoteId = async(id)=> {
+   try {
+    const pdfs = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.pdfId,
+      [Query.equal("note", id)],
+    );
+    return pdfs.documents[0];
+   } catch (error) {
+    console.log(error);
+    return error
+   }
+}
