@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-dropzone": "^14.2.3"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.1"
-  }
-}
