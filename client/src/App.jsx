@@ -24,6 +24,7 @@ import "./App.css";
 
 import { ForgetPassword } from "./components/Login/ForgetPassword.jsx";
 import TiptapEditor from "./Tiptap.jsx";
+import { AllPdfs } from "./components/PDF/AllPdfs.jsx";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
           <Route path="/notes/:id" element={<Notes />} />
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
           <Route path="/pdfupload/:id" element={<Pdf />} />
-
+          <Route path="/pdfupload/" element={<AllPdfs />} />
         </Routes>
       </Router>
     </div>
