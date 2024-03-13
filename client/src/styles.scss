@@ -206,3 +206,8 @@ mark {
   box-decoration-break: clone;
   padding: 0.125em 0;
 }
+@media only screen and (max-width: 900px) {
+  .TiptapEditor{
+    padding: 0;
+  }
+}

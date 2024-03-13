@@ -51,7 +51,9 @@ export default function TemporaryDrawer() {
   const handleClickPdfs = () => {
     navigate("/pdfupload");
   };
-
+  const handleClickProfile = () => {
+    navigate("/user/profile");
+  };
   const list = () => (
     <div className="side-bar">
       <div className="title" onClick={handleClickLanding}>
@@ -61,7 +63,7 @@ export default function TemporaryDrawer() {
       <div className="side-bar-options">
         <div className="upper-options">
           <ul>
-            <li onClick={handleClickHome}>
+            <li onClick={handleClickProfile}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 data-name="Layer 1"
@@ -83,8 +85,7 @@ export default function TemporaryDrawer() {
               </svg>
               Profile
             </li>
-
-            <li onClick={handleClickNotes}>
+            <li onClick={handleClickHome}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

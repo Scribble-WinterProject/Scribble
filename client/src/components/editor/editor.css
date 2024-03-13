@@ -38,7 +38,7 @@
   background-color: #eee;
   gap: 2rem;
 
-  width: 95vw;
+  width: 93vw;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -63,12 +63,26 @@
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
   .menu-bar {
     flex-wrap: nowrap; /* Allow wrapping in mobile view */
     overflow-y: none;
     padding-top: 19px; /* Vertical scrolling if needed */
     max-height: 70px; /* Set a maximum height for vertical scrolling */
+  }
+  .editor-menu-options {
+    width: 93vw;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu-bar {
+    flex-wrap: nowrap; /* Allow wrapping in mobile view */
+    overflow-y: none;
+    padding-top: 19px; /* Vertical scrolling if needed */
+    max-height: 70px; /* Set a maximum height for vertical scrolling */
+  }
+  .editor-menu-options {
+    width: 93vw;
   }
 }
 

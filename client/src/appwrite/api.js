@@ -201,13 +201,16 @@ export const pdfUpload = async ({ file, noteId }) => {
       throw new Error("error while uploading file");
     }
 
+    console.log("upload gbfhbfhb", upload);
+
     const preview = await storage.getFilePreview(
       appwriteConfig.storageId,
-      upload.$id,
-      200,
-      200,
-      "fill",
-      100
+      upload.$id
+    );
+
+    const fileUrl = await storage.getFileView(
+      appwriteConfig.storageId,
+      upload.$id
     );
 
     if (!preview) {
@@ -219,7 +222,7 @@ export const pdfUpload = async ({ file, noteId }) => {
       appwriteConfig.pdfId,
       ID.unique(),
       {
-        fileUrl: preview,
+        fileUrl,
         note: noteId,
       }
     );
@@ -326,12 +329,55 @@ export const getNoteTitleById = async (documentId) => {
 export const getPdfByNoteId = async (id) => {
   try {
     console.log("id hai mc", id);
-
     const note = await getNoteFull(id);
     console.log("====================================");
     console.log(note.pdfs);
 
     return note.pdfs;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const deleteNote = async (id) => {
+  try {
+    // Delete the note document by its ID
+    await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id
+    );
+    console.log("====================================");
+    console.log("deleted. noote");
+    console.log("====================================");
+    return true; // Return true if the deletion is successful
+  } catch (error) {
+    console.log(error);
+    return false; // Return false or handle the error as appropriate
+  }
+};
+
+export const getPdfById = async (id) => {
+  try {
+    const pdf = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.pdfId,
+      id
+    );
+    return pdf;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+export const deletePdfById = async (id) => {
+  try {
+    const response = await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.pdfId,
+      id
+    );
   } catch (error) {
     console.log(error);
     return error;

@@ -8,6 +8,7 @@ import "./Sidedrawer.css";
 import { logOut } from "../../appwrite/api";
 import { userLogOutMutation } from "../../reactQuery/queries";
 import { NotePdfCard } from "../PDF/NotePdfCard";
+import Pdf from "../PDF/Pdf";
 
 export default function TemporaryDrawerNote() {
   const navigate = useNavigate();
@@ -46,6 +47,9 @@ export default function TemporaryDrawerNote() {
   const handleClickHome = () => {
     navigate("/home");
   };
+  const handleClickProfile = () => {
+    navigate("/user/profile");
+  };
   const handleClickLanding = () => {
     navigate("/");
   };
@@ -62,7 +66,7 @@ export default function TemporaryDrawerNote() {
       <div className="side-bar-options">
         <div className="upper-options">
           <ul>
-            <li onClick={handleClickHome}>
+            <li onClick={handleClickProfile}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 data-name="Layer 1"
@@ -85,7 +89,7 @@ export default function TemporaryDrawerNote() {
               Profile
             </li>
 
-            <li onClick={handleClickNotes}>
+            <li onClick={handleClickHome}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -150,6 +154,10 @@ export default function TemporaryDrawerNote() {
         </div>
         <div className="pdfs">
           <NotePdfCard />
+        </div>
+
+        <div className="uploadPdf">
+          <Pdf />
         </div>
 
         <div className="lower-options">

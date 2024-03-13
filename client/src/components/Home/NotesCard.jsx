@@ -1,8 +1,32 @@
 import React from "react";
-
+import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import "./NotesCard.css";
+import { deleteNote } from "../../appwrite/api";
 
-function NotesCard({ title, body }) {
+function NotesCard({ title, id }) {
+  const handleDelete = async () => {
+    await deleteNote(id);
+    console.log("====================================");
+    console.log("id hai", id);
+    console.log("====================================");
+    console.log("Note deleted");
+    window.location.reload(); // Reload the screen after deleting a note
+  };
+
+  const handleDeleteConfirmation = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this note?"
+    );
+    if (confirmDelete) {
+      toast.promise(await handleDelete(), {
+        loading: "Deleting note...",
+        success: "Note deleted",
+        error: "Failed to delete note",
+      });
+    }
+  };
+
   console.log("====================================");
   console.log(title);
   console.log("====================================");
@@ -13,15 +37,16 @@ function NotesCard({ title, body }) {
           <h1>{title}</h1>
         </div>
         <div className="notes-card-body">
-          {/* <p>{body}</p> */}
-
-          {/* <p className="cookieHeading">{title}</p> */}
-          {/* <p className="cookieDescription">{body}</p> */}
-          {/* <p className="cookieDescription">Created at: {props.createdAt}</p> */}
-
           <div className="buttonContainer">
-            <button className="acceptButton">Edit</button>
-            <button className="declineButton">Delete</button>
+            <Link to={`/notes/${id}`}>
+              <button className="acceptButton">Edit</button>
+            </Link>
+            <button
+              className="declineButton"
+              onClick={handleDeleteConfirmation}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

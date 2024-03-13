@@ -1,0 +1,124 @@
+.deleteButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow-y: hidden; /* Remove overflow in y direction */
+}
+.deleteButton svg {
+  width: 44%;
+}
+.deleteButton:hover {
+  background-color: rgb(237, 56, 56);
+  overflow-y: visible; /* Remove overflow in y direction */
+}
+.bin path {
+  transition: all 0.2s;
+}
+.deleteButton:hover .bin path {
+  fill: #fff;
+}
+.deleteButton:active {
+  transform: scale(0.98);
+}
+.tooltip {
+  --tooltip-color: rgb(41, 41, 41);
+  position: absolute;
+  top: -40px;
+  background-color: var(--tooltip-color);
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 8px 12px;
+  font-weight: 600;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.105);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.tooltip::before {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  content: "";
+  background-color: var(--tooltip-color);
+  bottom: -10%;
+}
+.deleteButton:hover .tooltip {
+  opacity: 1;
+}
+.pdfs {
+  display: flex;
+}
+
+.button-container {
+  display: flex; /* Use Flexbox for alignment */
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px; /* Add some space between the buttons */
+}
+.pdfs-container {
+  max-height: 200px; /* Adjust based on your design */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 1px; /* Optional: Add some padding to the right */
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pdfs-container {
+  max-height: 250px; /* Adjust based on your design */
+  overflow-y: auto; /* Enable vertical scrolling */
+
+  /* Custom scrollbar */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #9e9ea7 #f5f5f5; /* For Firefox */
+}
+
+/* Custom scrollbar for Chrome, Safari, and Edge */
+.pdfs-container::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+}
+
+.pdfs-container::-webkit-scrollbar-track {
+  background: #f5f5f5; /* Color of the track */
+}
+
+.pdfs-container::-webkit-scrollbar-thumb {
+  background-color: #9e9ea7; /* Color of the thumb */
+  border-radius: 4px; /* Optional: Rounded corners for the thumb */
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pdf-view-btn {
+  width: 80px;
+}
+.pdfs {
+  min-width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+}
+.load {
+  padding-bottom: 700px;
+  padding-right: 18px;
+}
