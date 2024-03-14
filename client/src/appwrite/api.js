@@ -337,3 +337,18 @@ export const getPdfByNoteId = async (id) => {
     return error;
   }
 };
+
+export const deletePdfById = async (id) => {
+  try {
+    const response = await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.pdfId,
+      id
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+

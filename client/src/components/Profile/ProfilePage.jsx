@@ -1,10 +1,39 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import TemporaryDrawer from '../SideDrawer/Sidedrawer';
 import "./ProfilePage.css";
+import { getCurrentUser, saveUser } from '../../appwrite/api';
+import { avatars } from '../../appwrite/config';
 
 function ProfilePage() {
     const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const [currUser, setcurrUser] = useState({})
+    console.log("fvmdklmngklvbnmdfkl",currUser);
+    useEffect(()=> {
+        const getUser = async()=> {
+            const userData = await getCurrentUser();
+            const account = userData[1];
+            if(!account){
+                navigate("/login");
+                return;
+            }
+            const user = userData[3];
+
+            if(!user){
+                const accountId = account.$id;
+                const avatar = avatars.getInitials(account.name);
+                const newUser = await saveUser({
+                    accountId: accountId,
+                    email: account.email,
+                    imageurl: avatar,
+                    fullname: account.name,
+                });
+                setcurrUser(newUser.documents[0]);
+            }
+            setcurrUser(user);
+        }
+        getUser()
+    },[])
 
     const toggleForgotPassword = () => {
         setShowForgotPassword(!showForgotPassword);
@@ -75,9 +104,9 @@ function ProfilePage() {
                             </div>
                         </div>
 
-                        <h3 className="profile-name">James Carson</h3>
+                        <h3 className="profile-name">{currUser?.fullname}</h3>
                         <div className="profile-about">
-                            <p className="email">aditya@gmail.com</p>
+                            <p className="email">{currUser?.email}</p>
                         </div>
                         {/* <button className="profile-btn-dark">Edit Profile</button> */}
                         <button className="profile-btn-light" onClick={toggleForgotPassword}>
