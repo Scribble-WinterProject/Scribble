@@ -352,3 +352,31 @@ export const deletePdfById = async (id) => {
   }
 }
 
+export const getPdfById = async (id) => {
+  try {
+    const pdf = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.pdfId,
+      id
+    );
+    return pdf;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+export const deleteNote = async (id) => {
+  try {
+    const note = await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.noteId,
+      id
+    );
+    return note;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+

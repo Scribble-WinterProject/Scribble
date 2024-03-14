@@ -41,7 +41,7 @@ function App() {
           <Route path="/pdfupload/:id" element={<Pdf />} />
           <Route path="/pdfupload/note/pdf/:id" element={<NotePdfCard />} />
           <Route path="/pdfupload/" element={<AllPdfs />} />
-          <Route path="/pdf-viewer/:pdfUrl" element={<PdfViewer />} />
+          <Route path="/pdfviewer/:id" element={<PdfViewer />} />
         </Routes>
       </Router>
     </div>

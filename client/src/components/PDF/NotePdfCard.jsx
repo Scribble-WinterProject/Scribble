@@ -3,32 +3,35 @@ import { getPdfByNoteId } from "../../appwrite/api";
 import { useParams, useNavigate } from "react-router";
 import PdfReader from "./PdfReader"; // Adjust the import path as necessary
 
-export const NotePdfCard = () => {
+export const NotePdfCard = ({note}) => {
   const [pdfs, setPdfs] = useState([]);
   const [selectedPdfUrl, setSelectedPdfUrl] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     const getPdf = async () => {
-      const pdfs = await getPdfByNoteId(id);
+      const pdfs = await getPdfByNoteId(note.$id);
       setPdfs(pdfs);
     };
     getPdf();
-  }, [id]);
+  }, []);
 
-  const handlePdfClick = (url) => {
-    navigate(`/pdf-viewer/${encodeURIComponent(url)}`);
+console.log("pdfs are",pdfs);
+
+  const handlePdfClick = (id) => {
+    navigate(`/pdfviewer/${id}`);
   };
 
   return (
-    <div>
-      {pdfs.map((pdf) => (
-        <div key={pdf.$id}>
-          <h1>{pdf.title}</h1>
-          <button onClick={() => handlePdfClick(pdf.fileUrl)}>View</button>
-        </div>
-      ))}
-      {selectedPdfUrl && <PdfReader fileUrl={selectedPdfUrl} />}
+    <div className="">
+      <h1 className="">{note.title}</h1>
+      <div>
+        {pdfs.map((pdf) => (
+          <div key={pdf.$id} onClick={() => handlePdfClick(pdf.$id)}>
+            <h3>{pdf.$id}</h3>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
