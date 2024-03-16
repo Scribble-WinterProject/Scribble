@@ -33,7 +33,7 @@ function Notes() {
       <div className="navbar-home">
         <div className="left-navbar-home">
           <TemporaryDrawerNote id={id} />
-          <div className="title-navbar">
+          <div className="title-navbar-notes">
             <h1 className="scribble">Scribble</h1>
             <Title />
           </div>

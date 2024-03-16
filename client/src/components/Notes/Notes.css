@@ -6,9 +6,9 @@
   flex-direction: column;
 }
 
-.TiptapEditor {
+/* .TiptapEditor {
   width: 30vw;
-}
+} */
 
 .text-editor-wrapper {
   /* margin-top: 15px; */
@@ -41,8 +41,9 @@
   right: 10px;
 }
 
-.title-navbar {
-  width: 50vw;
+.title-navbar-notes {
+  font-family: "Pacifico", cursive;
+  width: 90vw;
   display: flex;
   justify-content: space-between;
 

@@ -85,7 +85,7 @@ function Home() {
           <div className="left-navbar-home">
             <TemporaryDrawer />
             <div className="title-navbar">
-              <h1>Scribble</h1>
+              <h1 className="title">Scribble</h1>
             </div>
           </div>
         </div>
