@@ -40,7 +40,7 @@ function App() {
           <Route path="/notes/tiptap" element={<TiptapEditor />} />
           <Route path="/pdfupload/:id" element={<Pdf />} />
           <Route path="/pdfupload/note/pdf/:id" element={<NotePdfCard />} />
-          <Route path="/pdfupload/" element={<AllPdfs />} />
+          <Route path="/pdfs/" element={<AllPdfs />} />
           <Route path="/pdfviewer/:id" element={<PdfViewer />} />
         </Routes>
       </Router>

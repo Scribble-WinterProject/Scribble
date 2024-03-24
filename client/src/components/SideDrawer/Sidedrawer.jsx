@@ -40,16 +40,16 @@ export default function TemporaryDrawer() {
   };
 
   const handleClickNotes = () => {
-    navigate("/notes");
+    navigate("/home");
   };
   const handleClickHome = () => {
-    navigate("/home");
+    navigate("/user/profile");
   };
   const handleClickLanding = () => {
     navigate("/");
   };
   const handleClickPdfs = () => {
-    navigate("/pdfupload");
+    navigate("/pdfs");
   };
 
   const list = () => (

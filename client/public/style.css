@@ -1,0 +1,34 @@
+.pdfOnNote {
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: medium;
+    margin-bottom: 4px;
+}
+
+.pdfOnNote:hover {
+    cursor: pointer;
+    
+}
+
+.pdfContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addPdfButton {
+    background-color: #06333b;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0.8;
+}
