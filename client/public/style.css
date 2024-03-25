@@ -1,0 +1,109 @@
+.pdfOnAllPdfs {
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: 40px;
+    margin-bottom: 4px;
+}
+
+.pdfOnNote {
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.pdfOnNote:hover {
+    cursor: pointer;
+    
+}
+
+
+
+.pdfContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pdfContainerAllPdfs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.addPdfButton {
+    background-color: #06333b;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+
+.pdfCard {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 1rem;
+    margin: 2rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pdfCardName{
+    margin-bottom: 30px;
+    font-size: 3rem;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+
+:hover.pdfCardName {
+    cursor: pointer;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdfButtons {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    gap: 1rem;
+}
+
+.pdfButton {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #391a1a;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0.9;
+}
+
+.pdfName {
+    font-size: 2rem;
+    font-family: sans-serif;
+    text-align: center;
+}

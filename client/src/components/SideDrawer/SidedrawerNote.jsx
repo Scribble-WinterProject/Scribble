@@ -1,16 +1,28 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 
 import "./Sidedrawer.css";
-import { logOut } from "../../appwrite/api";
+import { getNote, logOut } from "../../appwrite/api";
 import { userLogOutMutation } from "../../reactQuery/queries";
 import { NotePdfCard } from "../PDF/NotePdfCard";
-import Pdf from "../PDF/Pdf";
 
 export default function TemporaryDrawerNote() {
+  const [note, setnote] = React.useState({})
+  const { id } = useParams();
+
+
+
+  React.useEffect(()=> {
+    const getCurrNote = async () => {
+      const note = await getNote(id)
+      setnote(note)
+    }
+    getCurrNote()
+  },[])
+
   const navigate = useNavigate();
 
   const [state, setState] = React.useState({
@@ -42,19 +54,16 @@ export default function TemporaryDrawerNote() {
   };
 
   const handleClickNotes = () => {
-    navigate("/notes");
-  };
-  const handleClickHome = () => {
     navigate("/home");
   };
-  const handleClickProfile = () => {
+  const handleClickHome = () => {
     navigate("/user/profile");
   };
   const handleClickLanding = () => {
     navigate("/");
   };
   const handleClickPdfs = () => {
-    navigate("/pdfupload");
+    navigate("/pdfs");
   };
 
   const list = () => (
@@ -66,7 +75,7 @@ export default function TemporaryDrawerNote() {
       <div className="side-bar-options">
         <div className="upper-options">
           <ul>
-            <li onClick={handleClickProfile}>
+            <li onClick={handleClickHome}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 data-name="Layer 1"
@@ -89,7 +98,7 @@ export default function TemporaryDrawerNote() {
               Profile
             </li>
 
-            <li onClick={handleClickHome}>
+            <li onClick={handleClickNotes}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -118,14 +127,15 @@ export default function TemporaryDrawerNote() {
 
             <li onClick={handleClickPdfs}>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                enable-background="new 0 0 32 32"
-                overflow="visible"
-                viewBox="0 0 32 32"
-                id="pdf"
-              >
+  xmlns="http://www.w3.org/2000/svg"
+  width="32"
+  height="32"
+  enableBackground="new 0 0 32 32"
+  overflow="visible"
+  viewBox="0 0 32 32"
+  id="pdf"
+>
+
                 <switch>
                   <g>
                     <path
@@ -153,12 +163,10 @@ export default function TemporaryDrawerNote() {
           </ul>
         </div>
         <div className="pdfs">
-          <NotePdfCard />
+          <NotePdfCard id={id}/>
         </div>
 
-        <div className="uploadPdf">
-          <Pdf />
-        </div>
+
 
         <div className="lower-options">
           <ul>
@@ -194,7 +202,7 @@ export default function TemporaryDrawerNote() {
   const anchor = "left"; // Set anchor to 'left' only
 
   return (
-    <div>
+    <div className="">
       <React.Fragment key={anchor}>
         <Button onClick={toggleDrawer(anchor, true)}>
           <svg

@@ -14,7 +14,6 @@ export const createUserAccount = async (user) => {
       throw new Error("error while createing new account");
     }
 
-    console.log("new account is ", newAccount);
     const avatar = avatars.getInitials(user.name);
 
     const newUser = await saveUser({
@@ -23,7 +22,6 @@ export const createUserAccount = async (user) => {
       imageurl: avatar,
       fullname: newAccount.name,
     });
-    console.log("new user", newUser);
     return newUser;
   } catch (error) {
     console.log(error);
@@ -104,14 +102,12 @@ export const passwordEmail = async (email) => {
 
 export const resetPassword = async (userId, secret, password) => {
   try {
-    console.log(userId, secret, password);
     const response = await account.updateRecovery(
       userId,
       secret,
       password,
       password
     );
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -126,13 +122,11 @@ export const getCurrentUser = async () => {
     if (!currentAccount) {
       throw new Error("unauthorized");
     }
-    console.log("current account", currentAccount);
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       [Query.equal("accountId", currentAccount.$id)]
     );
-    console.log("current user", currentUser);
 
     const avatar = avatars.getInitials(currentAccount.name);
     return [
@@ -165,7 +159,6 @@ export const saveNote = async (note) => {
       ID.unique(),
       note
     );
-    console.log("saved note", noteSaved);
     return noteSaved;
   } catch (error) {
     console.log(error);
@@ -201,16 +194,21 @@ export const pdfUpload = async ({ file, noteId }) => {
       throw new Error("error while uploading file");
     }
 
-    console.log("upload gbfhbfhb", upload);
+    
 
-    const preview = await storage.getFilePreview(
+    const fileData = await storage.getFileView(
       appwriteConfig.storageId,
       upload.$id
     );
 
-    const fileUrl = await storage.getFileView(
+    const fileUrl = fileData.href
+    const preview = await storage.getFilePreview(
       appwriteConfig.storageId,
-      upload.$id
+      upload.$id,
+      200,
+      200,
+      "fill",
+      100
     );
 
     if (!preview) {
@@ -245,9 +243,7 @@ export const getNote = async (id) => {
       appwriteConfig.noteId,
       id
     );
-    console.log(note);
     note.body = JSON.parse(note.body);
-    console.log(note.body);
     return note.body;
   } catch (error) {
     console.log(error);
@@ -261,9 +257,7 @@ export const getNoteFull = async (id) => {
       appwriteConfig.noteId,
       id
     );
-    console.log(note);
     note.body = JSON.parse(note.body);
-    console.log(note.body);
     return note;
   } catch (error) {
     console.log(error);
@@ -328,10 +322,9 @@ export const getNoteTitleById = async (documentId) => {
 
 export const getPdfByNoteId = async (id) => {
   try {
-    console.log("id hai mc", id);
+
     const note = await getNoteFull(id);
-    console.log("====================================");
-    console.log(note.pdfs);
+
 
     return note.pdfs;
   } catch (error) {
@@ -340,23 +333,19 @@ export const getPdfByNoteId = async (id) => {
   }
 };
 
-export const deleteNote = async (id) => {
+export const deletePdfById = async (id) => {
   try {
-    // Delete the note document by its ID
-    await databases.deleteDocument(
+    const response = await databases.deleteDocument(
       appwriteConfig.databaseId,
-      appwriteConfig.noteId,
+      appwriteConfig.pdfId,
       id
     );
-    console.log("====================================");
-    console.log("deleted. noote");
-    console.log("====================================");
-    return true; // Return true if the deletion is successful
+    return response;
   } catch (error) {
     console.log(error);
-    return false; // Return false or handle the error as appropriate
+    return error;
   }
-};
+}
 
 export const getPdfById = async (id) => {
   try {
@@ -370,16 +359,21 @@ export const getPdfById = async (id) => {
     console.log(error);
     return error;
   }
-};
-export const deletePdfById = async (id) => {
+}
+
+export const deleteNote = async (id) => {
   try {
-    const response = await databases.deleteDocument(
+    const note = await databases.deleteDocument(
       appwriteConfig.databaseId,
-      appwriteConfig.pdfId,
+      appwriteConfig.noteId,
       id
     );
+    return note;
   } catch (error) {
     console.log(error);
     return error;
   }
-};
+}
+
+
+

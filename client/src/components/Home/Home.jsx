@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 // import component
 import TemporaryDrawer from "../SideDrawer/Sidedrawer";
 import Divider from "@mui/material/Divider";
@@ -18,7 +18,7 @@ import {
   saveUser,
 } from "../../appwrite/api";
 import { useNavigate } from "react-router";
-
+import { Link } from "react-router-dom";
 import { userSaveNoteMutation } from "../../reactQuery/queries";
 import { avatars } from "../../appwrite/config";
 import Loader from "../Loader/Loader";
@@ -26,10 +26,10 @@ import Loader from "../Loader/Loader";
 function Home() {
   const [notes, setNotes] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
-  const [isLoading, setIsLoading] = useState(true); // State for loader
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const { mutateAsync: createNote } = userSaveNoteMutation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getUserNotes = async () => {
@@ -38,7 +38,7 @@ function Home() {
         const account = data[1];
         const user = data[3];
         if (!account) {
-          navigate("/login"); // Redirect to login page if user is not found
+          navigate("/login"); 
           return;
         }
         if (!user) {
@@ -55,7 +55,7 @@ function Home() {
         setUser(user);
         const userNotes = await getNotes(user.$id);
         setNotes(userNotes.documents);
-        setIsLoading(false); // Set loader to false after notes are fetched
+        setLoading(false); 
       } catch (error) {
         console.log(error);
       }
@@ -78,17 +78,24 @@ function Home() {
     console.log(setSearchQuery);
   };
 
+  if (loading) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <>
-      <div className="navBar">
-        <div className="navbar-home">
-          <div className="left-navbar-home">
-            <TemporaryDrawer />
-            <div className="title-navbar">
-              <h1 className="title">Scribble</h1>
-            </div>
+    <div>
+      <div className="navbar-home">
+        <div className="left-navbar-home">
+          <TemporaryDrawer />
+          <div className="title-navbar">
+            <h1>Scribble</h1>
           </div>
         </div>
+
         <div className="group">
           <svg viewBox="0 0 24 24" aria-hidden="true" className="icon">
             <g>
@@ -105,102 +112,98 @@ function Home() {
         </div>
       </div>
 
-      {isLoading ? (
-        <div className="loader">
-          <Loader />
-        </div> // Show loader if isLoading is true
-      ) : (
-        <div className="home-folder-notes">
-          <div className="home-folder">
-            {/* <div className="folder-title">
+      <div className="home-folder-notes">
+        <div className="home-folder">
+          {/* <div className="folder-title">
             <h1>Recent Folders: </h1>
             <div className="drop-down-see-more">
               <ArrowDropDownIcon />
             </div>
           </div> */}
-            <Divider />
-            <div className="card-wrapper">
-              {/* <div className="notes-card" onClick={handleNewNote}> */}
-              {/* <div className="notes-card-title"> */}
-              {/* <h1>Add New</h1> */}
-              {/* <div className="home-folder"> */}
-              {/* <div className="folder-title">
+          <Divider />
+          <div className="card-wrapper">
+            {/* <div className="notes-card" onClick={handleNewNote}> */}
+            {/* <div className="notes-card-title"> */}
+            {/* <h1>Add New</h1> */}
+
+            {/* <div className="home-folder"> */}
+            {/* <div className="folder-title">
                   <h1>Recent Folders: </h1>
                   <div className="drop-down-see-more">
                     <ArrowDropDownIcon />
                   </div>
                 </div>
                 <Divider /> */}
-              {/* </div> */}
-              {/* <div className="home-notes"> */}
-              {/* <div className="folder-title">
+            {/* </div> */}
+
+            {/* <div className="home-notes"> */}
+            {/* <div className="folder-title">
                   <h1>Recent Notes: </h1>
                   <div className="drop-down-see-more">
                     <ArrowDropDownIcon />
                   </div>
                 </div> */}
-              <Divider />
-              <Divider />
-              {searchQuery &&
-                notes
-                  .filter((note) =>
-                    note.title.toLowerCase().includes(searchQuery.toLowerCase())
-                  )
-                  .map((note) => (
-                    <div>
-                      <NotesCard title={note.title} id={note.$id} />
-                    </div>
-                  ))}
-              {/* </div> */}
-              {/* </div> */}
-              {/* </div> */}
-              {/* <FolderCard />
+            {/* <Divider /> */}
+            {notes
+              .filter((note) =>
+                note.title.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map((note) => (
+                <div key={note.$id}>
+                  <NotesCard title={note.title} id={note.$id} />
+                </div>
+              ))}
+            {/* </div> */}
+            {/* </div> */}
+            {/* </div> */}
+            {/* <FolderCard />
             <FolderCard />
             <FolderCard /> */}
-            </div>
           </div>
-          <div className="home-notes">
-            <div className="folder-title">
-              <h1>Recent Notes: </h1>
-              <div className="drop-down-see-more">
-                <ArrowDropDownIcon />
-              </div>
-            </div>
-            <div className="notes-card" onClick={handleNewNote}>
-              <div className="notes-card-title">
-                <h1>Add New</h1>
+        </div>
+        <div className="home-notes">
+          <div className="folder-title">
+            <h1>Recent Notes: </h1>
+            {/* <div className="drop-down-see-more">
+              <ArrowDropDownIcon />
+            </div> */}
+          </div>
+          <div className="notes-card" onClick={handleNewNote}>
+            <div className="notes-card-title">
+              <h1>Add New</h1>
 
-                <div className="home-folder">
-                  {/* <div className="folder-title">
+              <div className="home-folder">
+                {/* <div className="folder-title">
                   <h1>Recent Folders: </h1>
                   <div className="drop-down-see-more">
                     <ArrowDropDownIcon />
                   </div>
                 </div>
                 <Divider /> */}
-                </div>
+              </div>
 
-                <div className="home-notes">
-                  {/* <div className="folder-title">
+              <div className="home-notes">
+                {/* <div className="folder-title">
                   <h1>Recent Notes: </h1>
                   <div className="drop-down-see-more">
                     <ArrowDropDownIcon />
                   </div>
                 </div> */}
-                  <Divider />
-                </div>
+                <Divider />
               </div>
             </div>
-            <div className="card-wrapper">
-              {notes.map((note) => (
-                <NotesCard key={note.$id} title={note.title} id={note.$id} />
-              ))}
-            </div>
-            <Divider />
           </div>
+          <div className="card-wrapper">
+            {notes.map((note) => (
+              <Link to={`/notes/${note.$id}`}>
+                <NotesCard key={note.$id} title={note.title} body={note.body} />
+              </Link>
+            ))}
+          </div>
+          <Divider />
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
 

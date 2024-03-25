@@ -65,9 +65,9 @@ const lowlight = createLowlight(common);
 
 // Register the languages with lowlight
 lowlight.register("css", css);
-console.log("====================================");
-console.log(lowlight.registered("css"));
-console.log("====================================");
+// console.log("====================================");
+// console.log(lowlight.registered("css"));
+// console.log("====================================");
 
 export const FontSize = Extension.create({
   name: "fontSize",

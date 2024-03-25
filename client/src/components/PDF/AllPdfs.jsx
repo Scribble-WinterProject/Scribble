@@ -8,14 +8,17 @@ import {
 import { avatars } from "../../appwrite/config";
 import { NotePdfCard } from "./NotePdfCard";
 import { Link, useNavigate } from "react-router-dom";
+import PdfCard from "./PdfCard";
+import Loader from "../Loader/Loader";
+import '../../../public/style.css'
+import TemporaryDrawer from "../SideDrawer/Sidedrawer";
 
 export const AllPdfs = () => {
   const [currUser, setcurrUser] = useState({});
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const notePdf = [];
-
   const navigate = useNavigate();
-  // const [userNotesPdf,setUserNotesPdf]= useState([])
 
   useEffect(() => {
     const getUserNotes = async () => {
@@ -41,7 +44,7 @@ export const AllPdfs = () => {
         setcurrUser(user);
         const userNotes = await getNotes(user.$id);
         setNotes(userNotes.documents);
-        console.log("notes", notes);
+        setLoading(false); 
       } catch (error) {
         console.log(error);
       }
@@ -49,15 +52,25 @@ export const AllPdfs = () => {
     getUserNotes();
   }, []);
 
-  console.log("notepdf", notes);
+  if (loading) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div>
+     <div className="left-navbar-home">
+          <TemporaryDrawer />
+          <div className="title-navbar">
+            <h1>Scribble</h1>
+          </div>
+        </div>
       {notes.map((note) => (
         <div key={note.$id}>
-          <h1>{note.title}</h1>
-          <h1>{notes.pdf}</h1>
-          <NotePdfCard note={note} />
+          <PdfCard note={note} />
         </div>
       ))}
     </div>
