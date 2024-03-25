@@ -21,6 +21,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { userSaveNoteMutation } from "../../reactQuery/queries";
 import { avatars } from "../../appwrite/config";
+import Loader from "../Loader/Loader";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -28,6 +29,7 @@ function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const { mutateAsync: createNote } = userSaveNoteMutation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getUserNotes = async () => {
@@ -36,7 +38,7 @@ function Home() {
         const account = data[1];
         const user = data[3];
         if (!account) {
-          navigate("/login"); // Redirect to login page if user is not found
+          navigate("/login"); 
           return;
         }
         if (!user) {
@@ -53,6 +55,7 @@ function Home() {
         setUser(user);
         const userNotes = await getNotes(user.$id);
         setNotes(userNotes.documents);
+        setLoading(false); 
       } catch (error) {
         console.log(error);
       }
@@ -74,6 +77,14 @@ function Home() {
     setSearchQuery(event.target.value);
     console.log(setSearchQuery);
   };
+
+  if (loading) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -132,7 +143,7 @@ function Home() {
                     <ArrowDropDownIcon />
                   </div>
                 </div> */}
-            <Divider />
+            {/* <Divider /> */}
             {notes
               .filter((note) =>
                 note.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -153,9 +164,9 @@ function Home() {
         <div className="home-notes">
           <div className="folder-title">
             <h1>Recent Notes: </h1>
-            <div className="drop-down-see-more">
+            {/* <div className="drop-down-see-more">
               <ArrowDropDownIcon />
-            </div>
+            </div> */}
           </div>
           <div className="notes-card" onClick={handleNewNote}>
             <div className="notes-card-title">
