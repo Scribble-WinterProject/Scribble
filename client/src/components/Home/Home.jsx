@@ -106,8 +106,8 @@ function Home() {
             className="search-input"
             type="search"
             placeholder="Search"
-            value={searchQuery} // Bind the input's value to the searchQuery state
-            onChange={handleSearchChange} // Update the searchQuery state when the input changes
+            value={searchQuery}
+            onChange={handleSearchChange} 
           />
         </div>
       </div>
