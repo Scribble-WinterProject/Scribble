@@ -14,7 +14,6 @@ export const createUserAccount = async (user) => {
       throw new Error("error while createing new account");
     }
 
-    console.log("new account is ", newAccount);
     const avatar = avatars.getInitials(user.name);
 
     const newUser = await saveUser({
@@ -23,7 +22,6 @@ export const createUserAccount = async (user) => {
       imageurl: avatar,
       fullname: newAccount.name,
     });
-    console.log("new user", newUser);
     return newUser;
   } catch (error) {
     console.log(error);
@@ -104,14 +102,12 @@ export const passwordEmail = async (email) => {
 
 export const resetPassword = async (userId, secret, password) => {
   try {
-    console.log(userId, secret, password);
     const response = await account.updateRecovery(
       userId,
       secret,
       password,
       password
     );
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -126,13 +122,11 @@ export const getCurrentUser = async () => {
     if (!currentAccount) {
       throw new Error("unauthorized");
     }
-    console.log("current account", currentAccount);
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userId,
       [Query.equal("accountId", currentAccount.$id)]
     );
-    console.log("current user", currentUser);
 
     const avatar = avatars.getInitials(currentAccount.name);
     return [
@@ -165,7 +159,6 @@ export const saveNote = async (note) => {
       ID.unique(),
       note
     );
-    console.log("saved note", noteSaved);
     return noteSaved;
   } catch (error) {
     console.log(error);
@@ -201,6 +194,14 @@ export const pdfUpload = async ({ file, noteId }) => {
       throw new Error("error while uploading file");
     }
 
+    
+
+    const fileData = await storage.getFileView(
+      appwriteConfig.storageId,
+      upload.$id
+    );
+
+    const fileUrl = fileData.href
     const preview = await storage.getFilePreview(
       appwriteConfig.storageId,
       upload.$id,
@@ -219,7 +220,7 @@ export const pdfUpload = async ({ file, noteId }) => {
       appwriteConfig.pdfId,
       ID.unique(),
       {
-        fileUrl: preview,
+        fileUrl,
         note: noteId,
       }
     );
@@ -242,9 +243,7 @@ export const getNote = async (id) => {
       appwriteConfig.noteId,
       id
     );
-    console.log(note);
     note.body = JSON.parse(note.body);
-    console.log(note.body);
     return note.body;
   } catch (error) {
     console.log(error);
@@ -258,9 +257,7 @@ export const getNoteFull = async (id) => {
       appwriteConfig.noteId,
       id
     );
-    console.log(note);
     note.body = JSON.parse(note.body);
-    console.log(note.body);
     return note;
   } catch (error) {
     console.log(error);
@@ -325,11 +322,9 @@ export const getNoteTitleById = async (documentId) => {
 
 export const getPdfByNoteId = async (id) => {
   try {
-    console.log("id hai mc", id);
 
     const note = await getNoteFull(id);
-    console.log("====================================");
-    console.log(note.pdfs);
+
 
     return note.pdfs;
   } catch (error) {
@@ -379,4 +374,6 @@ export const deleteNote = async (id) => {
     return error;
   }
 }
+
+
 
