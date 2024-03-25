@@ -21,7 +21,10 @@
     
 }
 
-
+.pdfOnAllPdfs:hover {
+    cursor: pointer;
+    
+}
 
 .pdfContainer {
     display: flex;
@@ -68,7 +71,6 @@
     margin-bottom: 30px;
     font-size: 3rem;
     font-family: sans-serif;
-    text-align: center;
 }
 
 
@@ -80,30 +82,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.pdfButtons {
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 1rem;
-    gap: 1rem;
-}
-
-.pdfButton {
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #391a1a;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    opacity: 0.9;
-}
-
-.pdfName {
-    font-size: 2rem;
-    font-family: sans-serif;
-    text-align: center;
 }

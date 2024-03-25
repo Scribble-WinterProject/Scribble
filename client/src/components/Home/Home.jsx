@@ -106,44 +106,17 @@ function Home() {
             className="search-input"
             type="search"
             placeholder="Search"
-            value={searchQuery} // Bind the input's value to the searchQuery state
-            onChange={handleSearchChange} // Update the searchQuery state when the input changes
+            value={searchQuery}
+            onChange={handleSearchChange} 
           />
         </div>
       </div>
 
       <div className="home-folder-notes">
         <div className="home-folder">
-          {/* <div className="folder-title">
-            <h1>Recent Folders: </h1>
-            <div className="drop-down-see-more">
-              <ArrowDropDownIcon />
-            </div>
-          </div> */}
+
           <Divider />
           <div className="card-wrapper">
-            {/* <div className="notes-card" onClick={handleNewNote}> */}
-            {/* <div className="notes-card-title"> */}
-            {/* <h1>Add New</h1> */}
-
-            {/* <div className="home-folder"> */}
-            {/* <div className="folder-title">
-                  <h1>Recent Folders: </h1>
-                  <div className="drop-down-see-more">
-                    <ArrowDropDownIcon />
-                  </div>
-                </div>
-                <Divider /> */}
-            {/* </div> */}
-
-            {/* <div className="home-notes"> */}
-            {/* <div className="folder-title">
-                  <h1>Recent Notes: </h1>
-                  <div className="drop-down-see-more">
-                    <ArrowDropDownIcon />
-                  </div>
-                </div> */}
-            {/* <Divider /> */}
             {notes
               .filter((note) =>
                 note.title.toLowerCase().includes(searchQuery.toLowerCase())
