@@ -37,7 +37,7 @@ const TiptapEditor = ({id}) => {
   }
   return (
     <>
-      <div>
+      <div className="TiptapEditor">
         <Tiptap content={dataNote} id={id}/>
       </div>
     </>

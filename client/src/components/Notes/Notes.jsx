@@ -32,8 +32,8 @@ function Notes() {
       <h1>{note.title}</h1>
       <div className="navbar-home">
         <div className="left-navbar-home">
-          <TemporaryDrawerNote />
-          <div className="title-navbar">
+          <TemporaryDrawerNote id={id} />
+          <div className="title-navbar-notes">
             <h1 className="scribble">Scribble</h1>
             <Title />
           </div>

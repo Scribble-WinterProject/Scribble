@@ -9,7 +9,7 @@
 
 // General editor styles
 .editor {
-  width: 100%;
+  width: 93vw;
   max-height: 675px;
   margin: 0 auto;
   
@@ -205,4 +205,9 @@ mark {
   border-radius: 0.25em;
   box-decoration-break: clone;
   padding: 0.125em 0;
+}
+@media only screen and (max-width: 900px) {
+  .TiptapEditor{
+    padding: 0;
+  }
 }

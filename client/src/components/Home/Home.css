@@ -1,14 +1,17 @@
-.navbar-home {
-  background-color: aliceblue;
+.navBar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+}
+.navbar-home {
+  background-color: aliceblue;
+  width: 100%;
+  display: flex;
   padding-right: 10px;
 }
 
 .left-navbar-home {
   display: flex;
-  gap: -10px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
 }
@@ -34,6 +37,7 @@
   background-color: #fff;
   color: #0d0c22;
   transition: 0.3s ease;
+  margin-right: 20px;
 }
 
 .search-input::placeholder {
@@ -57,12 +61,16 @@
 }
 
 .title-navbar {
+  width: 100%;
   font-family: "Pacifico", cursive;
   height: 50px;
-  width: 200px;
+  width: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.title {
+  margin-left: 5vw;
 }
 
 .home-folder-notes {
