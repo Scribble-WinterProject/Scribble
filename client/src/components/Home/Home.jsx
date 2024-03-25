@@ -149,9 +149,9 @@ function Home() {
                 note.title.toLowerCase().includes(searchQuery.toLowerCase())
               )
               .map((note) => (
-                <Link key={note.$id} to={`/notes/${note.$id}`}>
-                  <NotesCard title={note.title} body={note.body} />
-                </Link>
+                <div key={note.$id}>
+                  <NotesCard title={note.title} id={note.$id} />
+                </div>
               ))}
             {/* </div> */}
             {/* </div> */}
