@@ -43,7 +43,7 @@ export default function TemporaryDrawer() {
     navigate("/home");
   };
   const handleClickHome = () => {
-    navigate("/user/profile");
+    navigate("/home");
   };
   const handleClickLanding = () => {
     navigate("/");

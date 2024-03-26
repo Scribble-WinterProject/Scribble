@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function NotesCard({ title, id }) {
   const navigate = useNavigate();
-  const handleNoteDelete = async()=> {
+  const handleNoteDelete = async () => {
     try {
       await deleteNote(id);
       window.location.reload();
@@ -16,14 +16,14 @@ function NotesCard({ title, id }) {
     }
   }
 
-  const handleNoteClick = ()=>{
+  const handleNoteClick = () => {
     navigate(`/notes/${id}`)
   }
   return (
     <div>
       <div className="notes-card">
         <div className="notes-card-title">
-          <h1>{title}</h1>
+          <h2>{title}</h2>
         </div>
         <div className="notes-card-body">
           {/* <p>{body}</p> */}
@@ -33,7 +33,7 @@ function NotesCard({ title, id }) {
           {/* <p className="cookieDescription">Created at: {props.createdAt}</p> */}
 
           <div className="buttonContainer">
-            <button className="acceptButton"  onClick={handleNoteClick}>Edit</button>
+            <button className="acceptButton" onClick={handleNoteClick}>Edit</button>
             <button className="declineButton" onClick={handleNoteDelete}>Delete</button>
           </div>
         </div>

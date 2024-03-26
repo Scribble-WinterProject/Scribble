@@ -60,7 +60,7 @@
   display: block;
   width: 200px;
   border: none;
-  border-bottom: 1px solid #515151;
+  border: 1px solid #515151;
   background: transparent;
 }
 
@@ -84,8 +84,8 @@
   transition-delay: calc(var(--index) * 0.05s);
 }
 
-.wave-group .input:focus ~ label .label-char,
-.wave-group .input:valid ~ label .label-char {
+.wave-group .input:focus~label .label-char,
+.wave-group .input:valid~label .label-char {
   transform: translateY(-20px);
   font-size: 14px;
   color: #5264ae;
@@ -118,7 +118,7 @@
   right: 50%;
 }
 
-.wave-group .input:focus ~ .bar:before,
-.wave-group .input:focus ~ .bar:after {
+.wave-group .input:focus~.bar:before,
+.wave-group .input:focus~.bar:after {
   width: 50%;
 }

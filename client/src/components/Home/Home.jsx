@@ -3,13 +3,10 @@ import React, { useState, useEffect } from "react";
 // import component
 import TemporaryDrawer from "../SideDrawer/Sidedrawer";
 import Divider from "@mui/material/Divider";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 // import css
 import "./Home.css";
-import FolderCard from "./FolderCard";
-import ChatBotBtn from "../ChatBot/ChatBotBtn";
-import TiptapEditor from "../../Tiptap";
+
 import NotesCard from "../Home/NotesCard";
 import {
   saveNote,
@@ -38,7 +35,7 @@ function Home() {
         const account = data[1];
         const user = data[3];
         if (!account) {
-          navigate("/login"); 
+          navigate("/login");
           return;
         }
         if (!user) {
@@ -55,7 +52,7 @@ function Home() {
         setUser(user);
         const userNotes = await getNotes(user.$id);
         setNotes(userNotes.documents);
-        setLoading(false); 
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -107,43 +104,24 @@ function Home() {
             type="search"
             placeholder="Search"
             value={searchQuery}
-            onChange={handleSearchChange} 
+            onChange={handleSearchChange}
           />
         </div>
       </div>
 
+
+      <div className="add-new-note">
+        <button class="button" type="button" onClick={handleNewNote}>
+          <span class="button__text">Add New Note</span>
+          <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+        </button>
+      </div>
+
       <div className="home-folder-notes">
-        <div className="home-folder">
-          {/* <div className="folder-title">
-            <h1>Recent Folders: </h1>
-            <div className="drop-down-see-more">
-              <ArrowDropDownIcon />
-            </div>
-          </div> */}
+
+        {/* <div className="home-folder">
           <Divider />
           <div className="card-wrapper">
-            {/* <div className="notes-card" onClick={handleNewNote}> */}
-            {/* <div className="notes-card-title"> */}
-            {/* <h1>Add New</h1> */}
-
-            {/* <div className="home-folder"> */}
-            {/* <div className="folder-title">
-                  <h1>Recent Folders: </h1>
-                  <div className="drop-down-see-more">
-                    <ArrowDropDownIcon />
-                  </div>
-                </div>
-                <Divider /> */}
-            {/* </div> */}
-
-            {/* <div className="home-notes"> */}
-            {/* <div className="folder-title">
-                  <h1>Recent Notes: </h1>
-                  <div className="drop-down-see-more">
-                    <ArrowDropDownIcon />
-                  </div>
-                </div> */}
-            {/* <Divider /> */}
             {notes
               .filter((note) =>
                 note.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -153,46 +131,27 @@ function Home() {
                   <NotesCard title={note.title} id={note.$id} />
                 </div>
               ))}
-            {/* </div> */}
-            {/* </div> */}
-            {/* </div> */}
-            {/* <FolderCard />
-            <FolderCard />
-            <FolderCard /> */}
           </div>
-        </div>
+        </div> */}
+
+
         <div className="home-notes">
           <div className="folder-title">
             <h1>Recent Notes: </h1>
-            {/* <div className="drop-down-see-more">
-              <ArrowDropDownIcon />
-            </div> */}
           </div>
-          <div className="notes-card" onClick={handleNewNote}>
+          <Divider />
+
+          {/* <div className="notes-card" onClick={handleNewNote}>
             <div className="notes-card-title">
               <h1>Add New</h1>
-
-              <div className="home-folder">
-                {/* <div className="folder-title">
-                  <h1>Recent Folders: </h1>
-                  <div className="drop-down-see-more">
-                    <ArrowDropDownIcon />
-                  </div>
-                </div>
-                <Divider /> */}
+              <div className="home-folder"?
               </div>
-
               <div className="home-notes">
-                {/* <div className="folder-title">
-                  <h1>Recent Notes: </h1>
-                  <div className="drop-down-see-more">
-                    <ArrowDropDownIcon />
-                  </div>
-                </div> */}
                 <Divider />
               </div>
             </div>
-          </div>
+          </div> */}
+
           <div className="card-wrapper">
             {notes.map((note) => (
               <Link to={`/notes/${note.$id}`}>
@@ -200,7 +159,6 @@ function Home() {
               </Link>
             ))}
           </div>
-          <Divider />
         </div>
       </div>
     </div>
