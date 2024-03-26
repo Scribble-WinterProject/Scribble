@@ -34,6 +34,7 @@ const Title = () => {
   const handleDoubleClick = () => {
     setIsEditable(true);
   };
+  
 
   const renderLabelChars = () => {
     // Only render the label if inputValue is empty
