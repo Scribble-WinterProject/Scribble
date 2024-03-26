@@ -11,7 +11,8 @@ export const createUserAccount = async (user) => {
     );
 
     if (!newAccount) {
-      throw new Error("error while createing new account");
+      alert("error while creating new account");
+      return
     }
 
     const avatar = avatars.getInitials(user.name);
@@ -22,9 +23,15 @@ export const createUserAccount = async (user) => {
       imageurl: avatar,
       fullname: newAccount.name,
     });
+
+    if(!newUser){
+      alert("error while saving user");
+      return
+    }
     return newUser;
   } catch (error) {
     console.log(error);
+    alert("error while creating new account");
     return error;
   }
 };
@@ -372,6 +379,15 @@ export const deleteNote = async (id) => {
   } catch (error) {
     console.log(error);
     return error;
+  }
+}
+
+export const changePassword = async (oldPassword, newPassword) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    return error
   }
 }
 
