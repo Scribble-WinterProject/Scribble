@@ -66,10 +66,8 @@ function Login() {
     })
   };
 
-  const handleForgetPaasword = async(e) => {
-    e.preventDefault();
-    const forget = await emailVerification(formData.email);
-    console.log(forget);
+  const handleForgetPaasword = async() => {
+    navigate("/forgotpassword/email")
   }
 
   return (

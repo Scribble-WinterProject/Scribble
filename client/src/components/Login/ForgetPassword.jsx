@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { userForgetPasswordMutation, userLogOutMutation } from "../../reactQuery/queries";
+import "./Login.css";
+
 
 export const ForgetPassword = () => {
   const searchParams = useLocation();
@@ -13,8 +15,9 @@ export const ForgetPassword = () => {
   const { mutateAsync: logOutFunction } = userLogOutMutation();
 
   const [password, setPassword] = useState("");
-  const handlePasswordReset = async () => {
+  const handlePasswordReset = async (e) => {
       try {
+          e.preventDefault();
           const res = await forgetPassword({userId, secret, password});
           console.log(res);
           
@@ -28,10 +31,27 @@ export const ForgetPassword = () => {
       }
   };
   return (
-    <div>
-      <label>New Password</label>
-      <input type="password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handlePasswordReset}>Submit</button>
+    <div className="login-wrapper">
+      <div>
+        <form className="form" onChange={(e)=> setPassword(e.target.value)}>
+          <div className="flex-column">
+            <label>Password </label>
+          </div>
+
+          <div className="inputForm">
+            <input
+              type="text"
+              className="input"
+              id="password"
+              placeholder="Enter your Password"
+            />
+          </div>
+
+          <button className="button-submit"  onClick={handlePasswordReset}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

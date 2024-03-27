@@ -385,7 +385,6 @@ export const deleteNote = async (id) => {
 
 export const updateOldPassword = async (oldPassword, newPassword) => {
   try {
-    console.log(newPassword,oldPassword);
    const promise = account.updatePassword(newPassword, oldPassword);
 
     promise.catch((error) => {
