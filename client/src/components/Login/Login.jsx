@@ -29,14 +29,19 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const user = await loginUser(
+    try {
+      const user = await loginUser(
       formData
     );
     if (!user) {
-      console.log("something went wrong");
+      alert("something went wrong");
     }
-    console.log(user);
     navigate("/home");
+    } catch (error) {
+      console.log(error);
+      return error;
+      alert("error while login");
+    }
   };
 
   useEffect(() => {
@@ -61,10 +66,8 @@ function Login() {
     })
   };
 
-  const handleForgetPaasword = async(e) => {
-    e.preventDefault();
-    const forget = await emailVerification(formData.email);
-    console.log(forget);
+  const handleForgetPaasword = async() => {
+    navigate("/forgotpassword/email")
   }
 
   return (

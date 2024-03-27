@@ -36,19 +36,23 @@ function Signup() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    const newUser = await createUser(formData);
+    try {
+      const newUser = await createUser(formData);
 
     if (!newUser) {
-      console.log("something went wrong");
+      alert("something went wrong");
+      return
     }
 
-    const logedUser = await loginUser(formData.email, formData.password);
-    if(!logedUser){
-      console.log("something went wrong");
-    }
+    console.log("new user is",newUser);
 
-    console.log(newUser);
-    navigate("/login");
+      navigate("/login");
+
+    } catch (error) {
+      console.log(error);
+      alert("error while creating new account");
+      return error;
+    }
   };
 
   const handleGoogleAuth = async (e) => {
@@ -73,7 +77,7 @@ function Signup() {
         if(newUser){
           navigate("/");
         } else {
-          console.log("something went wrong");
+          alert("something went wrong");
         }
       } else if(user[0]!==undefined) {
         navigate("/home");
@@ -110,7 +114,7 @@ function Signup() {
 
           <div className="inputForm">
             <input
-              type="text"
+              type="email"
               className="input"
               id="email"
               name="email"

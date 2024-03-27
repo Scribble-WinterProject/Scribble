@@ -24,6 +24,7 @@ import TiptapEditor from "./Tiptap.jsx";
 import { NotePdfCard } from "./components/PDF/NotePdfCard.jsx";
 import { AllPdfs } from "./components/PDF/AllPdfs.jsx";
 import PdfViewer from "./components/PDF/PdfReader.jsx";
+import ForgetPasswordEmail from "./components/Login/ForgetPasswordEmail.jsx";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/pdfupload/note/pdf/:id" element={<NotePdfCard />} />
           <Route path="/pdfs/" element={<AllPdfs />} />
           <Route path="/pdfviewer/:id" element={<PdfViewer />} />
+          <Route path="/forgetPassword/email" element={<ForgetPasswordEmail />} />
         </Routes>
       </Router>
     </div>

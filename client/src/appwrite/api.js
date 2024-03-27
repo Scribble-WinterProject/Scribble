@@ -11,7 +11,8 @@ export const createUserAccount = async (user) => {
     );
 
     if (!newAccount) {
-      throw new Error("error while createing new account");
+      alert("error while creating new account");
+      return
     }
 
     const avatar = avatars.getInitials(user.name);
@@ -22,9 +23,15 @@ export const createUserAccount = async (user) => {
       imageurl: avatar,
       fullname: newAccount.name,
     });
+
+    if(!newUser){
+      alert("error while saving user");
+      return
+    }
     return newUser;
   } catch (error) {
     console.log(error);
+    alert("error while creating new account");
     return error;
   }
 };
@@ -370,6 +377,28 @@ export const deleteNote = async (id) => {
     );
     return note;
   } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+
+export const updateOldPassword = async (oldPassword, newPassword) => {
+  try {
+   const promise = account.updatePassword(newPassword, oldPassword);
+
+    promise.catch((error) => {
+      alert("error while changing password");
+      throw new Error("error while changing password");
+      return error;
+    });
+
+    promise.then((response) => {
+      alert("password changed successfully");
+      window.location.replace("/user/profile");
+    });
+  } catch (error) {
+    alert("error while changing password");
     console.log(error);
     return error;
   }
