@@ -382,12 +382,26 @@ export const deleteNote = async (id) => {
   }
 }
 
-export const changePassword = async (oldPassword, newPassword) => {
+
+export const updateOldPassword = async (oldPassword, newPassword) => {
   try {
-    
+    console.log(newPassword,oldPassword);
+   const promise = account.updatePassword(newPassword, oldPassword);
+
+    promise.catch((error) => {
+      alert("error while changing password");
+      throw new Error("error while changing password");
+      return error;
+    });
+
+    promise.then((response) => {
+      alert("password changed successfully");
+      window.location.replace("/user/profile");
+    });
   } catch (error) {
+    alert("error while changing password");
     console.log(error);
-    return error
+    return error;
   }
 }
 

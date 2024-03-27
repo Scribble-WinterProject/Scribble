@@ -2,13 +2,15 @@
 import React, { useState,useEffect } from 'react';
 import TemporaryDrawer from '../SideDrawer/Sidedrawer';
 import "./ProfilePage.css";
-import { getCurrentUser, saveUser } from '../../appwrite/api';
-import { avatars } from '../../appwrite/config';
+import { getCurrentUser, saveUser, updateNoteTitle, updateOldPassword } from '../../appwrite/api';
+import { account, avatars } from '../../appwrite/config';
 
 function ProfilePage() {
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [currUser, setcurrUser] = useState({})
-    console.log("fvmdklmngklvbnmdfkl",currUser);
+    const [oldPassword, setoldPassword] = useState('')
+    const [newPassword, setnewPassword] = useState('')
+    const [provider,serProvider] = useState('')
     useEffect(()=> {
         const getUser = async()=> {
             const userData = await getCurrentUser();
@@ -35,9 +37,24 @@ function ProfilePage() {
         getUser()
     },[])
 
+    useEffect(() => {
+      const getAccount = async () => {
+        const user = await account.getSession('current')
+        serProvider(user.provider)
+      }
+    getAccount()
+    }, [])
+    
+
     const toggleForgotPassword = () => {
         setShowForgotPassword(!showForgotPassword);
     };
+
+    const handleChangePassword = async() => {
+                await updateOldPassword(oldPassword,newPassword)
+                
+            
+    }
 
     return (
         <div className='profile-page-wrapper'>
@@ -63,6 +80,7 @@ function ProfilePage() {
                                     className="input"
                                     id="oldPassword"
                                     placeholder="Enter your old password"
+                                    onChange={(e)=>setoldPassword(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -91,10 +109,11 @@ function ProfilePage() {
                                     className="input"
                                     id="confirmPassword"
                                     placeholder="Retype new password"
+                                    onChange={(e)=>setnewPassword(e.target.value)}
                                 />
                             </div>
                         </div>
-                        <button className="profile-btn-dark">Submit</button>
+                        <button className="profile-btn-dark" onClick={handleChangePassword}>Submit</button>
                     </div>
                 ) : (
                     <div className="profile-card-wrraper">
@@ -110,7 +129,7 @@ function ProfilePage() {
                         </div>
                         {/* <button className="profile-btn-dark">Edit Profile</button> */}
                         <button className="profile-btn-light" onClick={toggleForgotPassword}>
-                            Forgot Password
+                            Change Password
                         </button>
                     </div>
                 )}
