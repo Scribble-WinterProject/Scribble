@@ -43,7 +43,7 @@ function App() {
           <Route path="/pdfupload/note/pdf/:id" element={<NotePdfCard />} />
           <Route path="/pdfs/" element={<AllPdfs />} />
           <Route path="/pdfviewer/:id" element={<PdfViewer />} />
-          <Route path="/forgetPassword/email" element={<ForgetPasswordEmail />} />
+          <Route path="/forgotpassword/email" element={<ForgetPasswordEmail />} />
         </Routes>
       </Router>
     </div>

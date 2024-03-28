@@ -65,8 +65,8 @@ export const googleAuth = async (path) => {
   try {
     const res = await account.createOAuth2Session(
       "google",
-      `http://localhost:5173${path}`,
-      `http://localhost:5173${path}`
+      `https://scribble-k76k.vercel.app${path}`,
+      `https://scribble-k76k.vercel.app${path}`
     );
     console.log(res.href);
   } catch (error) {
@@ -98,7 +98,7 @@ export const passwordEmail = async (email) => {
   try {
     const response = await account.createRecovery(
       email,
-      "http://localhost:5173/forgetPassword"
+      "https://scribble-k76k.vercel.app/forgetPassword"
     );
     return response;
   } catch (error) {
