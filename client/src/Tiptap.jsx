@@ -16,10 +16,7 @@ const TiptapEditor = ({id}) => {
       try {
         const fetchedData = await getNote(id);
         setDataNote(fetchedData);
-        console.log("====================================");
-        console.log("app", dataNote);
         setDataNote(fetchedData)
-        console.log("====================================");
       } catch (error) {
         console.error("Some error has occurred:", error);
       }
