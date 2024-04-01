@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function NotesCard({ title, id }) {
   const navigate = useNavigate();
+  console.log(id);
   const handleNoteDelete = async () => {
     try {
       await deleteNote(id);

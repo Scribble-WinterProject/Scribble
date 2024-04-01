@@ -154,9 +154,9 @@ function Home() {
 
           <div className="card-wrapper">
             {notes.map((note) => (
-              <Link to={`/notes/${note.$id}`}>
-                <NotesCard key={note.$id} title={note.title} body={note.body} />
-              </Link>
+              <div key={note.$id} >
+                <NotesCard title={note.title} id={note.$id} />
+              </div>
             ))}
           </div>
         </div>
