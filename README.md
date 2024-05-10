@@ -1,6 +1,8 @@
 <h1 align="center" id="title">Scribble</h1>
 
-<p id="description">Scribble is an AI powered note taking application that provide easy notetaking AI bot to answer all your questions and a place to store all your study materials.</p>
+<p id="description">Scribble is an AI powered note taking application that provide easy notetaking AI bot to answer all your questions and a place to store all your study materials
+
+<p id="link">Live Link: https://scribble-k76k.vercel.app/</p>
   
   
 <h2>🧐 Features</h2>
